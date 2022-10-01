@@ -1,30 +1,29 @@
 package Model;
 
-import java.util.Date;
-
 /**
  *
  * @author Abhishek
  */
 public class Employee {
     
-    private String Name ;
+    private String name ;
     private int empID;
     private int age;
     private String gender;
-    private Date startDate;
+    private String startDate;
     private String level;
     private String teamInfo;
     private String posTitle;
     private int phNumber;
+    private String email;
     private String photo;
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     public int getEmpID() {
@@ -51,11 +50,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
@@ -89,6 +88,14 @@ public class Employee {
 
     public void setPhNumber(int phNumber) {
         this.phNumber = phNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhoto() {

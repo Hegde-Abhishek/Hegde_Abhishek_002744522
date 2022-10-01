@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.EmployeesHistory;
 /**
  *
  * @author Abhishek
@@ -13,8 +14,10 @@ public class Human_Resource_Officer extends javax.swing.JFrame {
     /**
      * Creates new form Human_Resource_Officer
      */
+    EmployeesHistory empHistory;
     public Human_Resource_Officer() {
         initComponents();
+        empHistory = new EmployeesHistory();
     }
 
     /**
@@ -26,7 +29,7 @@ public class Human_Resource_Officer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
+        splitPane = new javax.swing.JSplitPane();
         leftPanel = new javax.swing.JPanel();
         createBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
@@ -54,9 +57,9 @@ public class Human_Resource_Officer extends javax.swing.JFrame {
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createBtn)
-                    .addComponent(viewBtn))
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(createBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         leftPanelLayout.setVerticalGroup(
@@ -69,7 +72,7 @@ public class Human_Resource_Officer extends javax.swing.JFrame {
                 .addContainerGap(322, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setLeftComponent(leftPanel);
+        splitPane.setLeftComponent(leftPanel);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -82,19 +85,19 @@ public class Human_Resource_Officer extends javax.swing.JFrame {
             .addGap(0, 465, Short.MAX_VALUE)
         );
 
-        jSplitPane1.setRightComponent(rightPanel);
+        splitPane.setRightComponent(rightPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(splitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(splitPane)
         );
 
         pack();
@@ -102,10 +105,14 @@ public class Human_Resource_Officer extends javax.swing.JFrame {
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
+        CreatePanel createPanel = new CreatePanel(empHistory);
+        splitPane.setRightComponent(createPanel);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
+        ViewPanel viewPanel = new ViewPanel(empHistory);
+        splitPane.setRightComponent(viewPanel);
     }//GEN-LAST:event_viewBtnActionPerformed
 
     /**
@@ -145,9 +152,9 @@ public class Human_Resource_Officer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createBtn;
-    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel rightPanel;
+    private javax.swing.JSplitPane splitPane;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }
