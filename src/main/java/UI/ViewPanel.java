@@ -4,7 +4,10 @@
  */
 package UI;
 
+import Model.Employee;
 import Model.EmployeesHistory;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -91,6 +94,11 @@ public class ViewPanel extends javax.swing.JPanel {
 
         deleteBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,7 +109,7 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(view, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                        .addComponent(view, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -127,7 +135,36 @@ public class ViewPanel extends javax.swing.JPanel {
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
+        int selectedRowIndex = empTable.getSelectedRow();
+        
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to view.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) empTable.getModel();
+        Employee selectedEmployee = (Employee) model.getValueAt(selectedRowIndex,0);
+        
+        
     }//GEN-LAST:event_viewBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = empTable.getSelectedRow();
+        
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) empTable.getModel();
+        Employee selectedEmployee = (Employee) model.getValueAt(selectedRowIndex,0);
+        
+        empHistory.deleteEmployee(selectedEmployee);
+        JOptionPane.showMessageDialog(this, "Employee record deleted.");
+        
+        populateTable();
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -139,5 +176,25 @@ public class ViewPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) empTable.getModel();
+        model.setRowCount(0);
+        
+        for(Employee e : empHistory.getEmpHistory()) {
+            Object[] row = new Object[10];
+            row[0]= e;
+            row[1]= e.getEmpID();
+            row[2]= e.getAge();
+            row[3]= e.getGender();
+            row[4]= e.getStartDate();
+            row[5]= e.getLevel();
+            row[6]= e.getTeamInfo();
+            row[7]= e.getPosTitle();
+            row[8]= e.getPhNumber();
+            row[9]= e.getEmail();
+            
+            model.addRow(row);
+            
+        }
+
     }
 }
