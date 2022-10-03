@@ -6,6 +6,7 @@ package UI;
 
 import Model.Employee;
 import Model.EmployeesHistory;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,7 +59,7 @@ public class CreatePanel extends javax.swing.JPanel {
         txtEmail = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
 
-        create.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        create.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         create.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         create.setText("Create / Add an Employee");
 
@@ -119,10 +120,23 @@ public class CreatePanel extends javax.swing.JPanel {
                 txtEmpIDActionPerformed(evt);
             }
         });
+        txtEmpID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmpIDKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmpIDKeyReleased(evt);
+            }
+        });
 
         txtAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAgeActionPerformed(evt);
+            }
+        });
+        txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAgeKeyPressed(evt);
             }
         });
 
@@ -159,6 +173,11 @@ public class CreatePanel extends javax.swing.JPanel {
         txtPhNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPhNumberActionPerformed(evt);
+            }
+        });
+        txtPhNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPhNumberKeyPressed(evt);
             }
         });
 
@@ -203,7 +222,9 @@ public class CreatePanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(email, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(email)
+                                        .addGap(106, 106, 106))
                                     .addComponent(phNumber, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,13 +243,13 @@ public class CreatePanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(60, 60, 60)
+                .addComponent(create)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(create)
-                                .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -268,11 +289,11 @@ public class CreatePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(email)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(photo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(35, 35, 35)
                 .addComponent(saveButton)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -325,6 +346,27 @@ public class CreatePanel extends javax.swing.JPanel {
         int phNumber = Integer.parseInt(txtPhNumber.getText());
         String email = txtEmail.getText();
         
+        if(name == null || name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Name.");
+            txtName.requestFocus();
+            return;
+        }
+        if(gender == null || gender.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter gender.");
+            txtName.requestFocus();
+            return;
+        }
+        if(startDate == null || startDate.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter start date.");
+            txtName.requestFocus();
+            return;
+        }
+        if(email == null || email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter email.");
+            txtName.requestFocus();
+            return;
+        }
+        
         Employee e = empHistory.addNewEmployees();
         e.setName(name);
         e.setEmpID(empID);
@@ -355,6 +397,68 @@ public class CreatePanel extends javax.swing.JPanel {
     private void txtGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGenderActionPerformed
+
+    private void txtEmpIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpIDKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpIDKeyReleased
+
+    private void txtPhNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhNumberKeyPressed
+        // TODO add your handling code here:
+        String phNumber = txtPhNumber.getText();
+        int length = phNumber.length();
+        char c = evt.getKeyChar();
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            if(length<10){
+                txtPhNumber.setEditable(true);
+            } else{
+                txtPhNumber.setEditable(false);
+            }
+        } else {
+            if (evt.getExtendedKeyCode()== KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()== KeyEvent.VK_DELETE){
+                txtPhNumber.setEditable(true);
+            } else {
+                txtPhNumber.setEditable(false);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_txtPhNumberKeyPressed
+
+    private void txtEmpIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpIDKeyPressed
+        // TODO add your handling code here:
+        String empID = txtEmpID.getText();
+        int length = empID.length();
+        char c = evt.getKeyChar();
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+                txtEmpID.setEditable(true);
+        } else {
+            if (evt.getExtendedKeyCode()== KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()== KeyEvent.VK_DELETE){
+                txtEmpID.setEditable(true);
+            } else {
+                txtEmpID.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_txtEmpIDKeyPressed
+
+    private void txtAgeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyPressed
+        // TODO add your handling code here:
+        String age = txtAge.getText();
+        int length = age.length();
+        char c = evt.getKeyChar();
+        if(evt.getKeyChar()>='0' && evt.getKeyChar()<='9'){
+            if(length<3){
+                txtAge.setEditable(true);
+            } else{
+                txtAge.setEditable(false);
+            }
+        } else {
+            if (evt.getExtendedKeyCode()== KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()== KeyEvent.VK_DELETE){
+                txtAge.setEditable(true);
+            } else {
+                txtAge.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_txtAgeKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

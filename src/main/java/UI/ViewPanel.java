@@ -67,7 +67,7 @@ public class ViewPanel extends javax.swing.JPanel {
         txtSearch = new javax.swing.JTextField();
         search = new javax.swing.JLabel();
 
-        view.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        view.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         view.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         view.setText("View Employees");
 
@@ -257,13 +257,18 @@ public class ViewPanel extends javax.swing.JPanel {
                                 .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                                 .addComponent(txtEmpID)
                                 .addComponent(txtAge)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewwLayout.createSequentialGroup()
-                        .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(email)
+                        .addGap(357, 357, 357))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewwLayout.createSequentialGroup()
+                        .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(teamInfo)
-                            .addComponent(level))
-                        .addGap(29, 29, 29)
+                            .addComponent(positionTitle)
+                            .addComponent(level)
+                            .addComponent(phNumber))
+                        .addGap(18, 18, 18)
                         .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,20 +276,9 @@ public class ViewPanel extends javax.swing.JPanel {
                             .addComponent(txtPhNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(190, 190, 190))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(viewwLayout.createSequentialGroup()
-                                .addComponent(positionTitle)
-                                .addGap(374, 374, 374))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewwLayout.createSequentialGroup()
-                                .addComponent(email)
-                                .addGap(357, 357, 357)))
-                        .addGroup(viewwLayout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(phNumber)
-                                .addComponent(contactInfo))
-                            .addGap(205, 205, 205)))))
+                    .addGroup(viewwLayout.createSequentialGroup()
+                        .addComponent(contactInfo)
+                        .addContainerGap())))
         );
         viewwLayout.setVerticalGroup(
             viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,21 +311,19 @@ public class ViewPanel extends javax.swing.JPanel {
                         .addGap(2, 2, 2)))
                 .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(viewwLayout.createSequentialGroup()
-                        .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gender)
-                            .addGroup(viewwLayout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(contactInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(4, 4, 4)
+                        .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(contactInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gender))
                         .addGap(18, 18, 18)
-                        .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(phNumber)))
+                        .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(viewwLayout.createSequentialGroup()
-                        .addComponent(txtPhNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPhNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phNumber))
                         .addGap(6, 6, 6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(viewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -371,17 +363,14 @@ public class ViewPanel extends javax.swing.JPanel {
                     .addComponent(vieww, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(view, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(viewBtn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(deleteBtn)))
-                                .addGap(122, 122, 122))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(viewBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteBtn)))
+                        .addGap(122, 122, 122))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(updateBtn)
@@ -393,6 +382,10 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,16 +456,50 @@ public class ViewPanel extends javax.swing.JPanel {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
+        String name = txtName.getText();
+        int empID = Integer.parseInt(txtEmpID.getText());
+        int age = Integer.parseInt(txtAge.getText());
+        String gender = txtGender.getText();
+        String startDate = txtStartDate.getText();
+        String level = txtLevel.getText();
+        String teamInfo = txtTeamInfo.getText();
+        String posTitle = txtPositionTitle.getText();
+        int phNumber = Integer.parseInt(txtPhNumber.getText());
+        String email = txtEmail.getText();
+        
+        if(name == null || name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Name.");
+            txtName.requestFocus();
+            return;
+        }
+        if(gender == null || gender.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter gender.");
+            txtName.requestFocus();
+            return;
+        }
+        if(startDate == null || startDate.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter start date.");
+            txtName.requestFocus();
+            return;
+        }
+        if(email == null || email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter email.");
+            txtName.requestFocus();
+            return;
+        }
         int selectedRowIndex = empTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) empTable.getModel();
         Employee selectedEmployee = (Employee) model.getValueAt(selectedRowIndex,0);
         
         selectedEmployee.setName(txtName.getText());
+        selectedEmployee.setEmpID(Integer.parseInt(txtEmpID.getText()));
+        selectedEmployee.setAge(Integer.parseInt(txtAge.getText()));
         selectedEmployee.setGender(txtGender.getText());
         selectedEmployee.setStartDate(txtStartDate.getText());
         selectedEmployee.setLevel(txtLevel.getText());
         selectedEmployee.setTeamInfo(txtTeamInfo.getText());
         selectedEmployee.setPosTitle(txtPositionTitle.getText());
+        selectedEmployee.setPhNumber(Integer.parseInt(txtPhNumber.getText()));
         selectedEmployee.setEmail(txtEmail.getText());
         
         JOptionPane.showMessageDialog(this, "Record updated successfully!");
