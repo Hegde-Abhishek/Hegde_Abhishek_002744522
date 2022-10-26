@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Model.City;
+import Model.Community;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +17,10 @@ public class CommunityPanel extends javax.swing.JPanel {
     /**
      * Creates new form CommunityPanel
      */
-    public CommunityPanel() {
+    City city;
+    public CommunityPanel(City city) {
         initComponents();
+        this.city = city;
     }
 
     /**
@@ -83,9 +87,14 @@ public class CommunityPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String communityName = commNameField.getText();
         
-        if(communityName.isEmpty() || communityName == null) {
+        if(communityName == null || communityName.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter community name");
             return;
+        } else {
+            Community c = new Community(commNameField.getText(),this.city);
+            this.city.addCommunityToList(c);
+            JOptionPane.showMessageDialog(null, "Community added");
+            commNameField.setText("");
         }
         
     }//GEN-LAST:event_saveBtnActionPerformed

@@ -11,6 +11,11 @@ package Model;
 public class Community {
     private String communityName;
 
+    public Community(String communityName, City city) {
+        this.communityName = communityName;
+    }
+    
+
     public String getCommunityName() {
         return communityName;
     }

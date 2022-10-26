@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.City;
 import Model.PersonDirectory;
 
 /**
@@ -16,9 +17,11 @@ public class Admin_view extends javax.swing.JFrame {
      * Creates new form Admin_view
      */
     PersonDirectory personDir;
+    City city;
     public Admin_view() {
         initComponents();
         personDir = new PersonDirectory();
+        this.city = new City("Boston");
     }
 
     /**
@@ -179,13 +182,13 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void communityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_communityBtnActionPerformed
         // TODO add your handling code here:
-        CommunityPanel communityP = new CommunityPanel();
+        CommunityPanel communityP = new CommunityPanel(city);
         jSplitPane2.setRightComponent(communityP);
     }//GEN-LAST:event_communityBtnActionPerformed
 
     private void houseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseBtnActionPerformed
         // TODO add your handling code here:
-        HousePanel housePanel = new HousePanel();
+        HousePanel housePanel = new HousePanel(city);
         jSplitPane2.setRightComponent(housePanel);
     }//GEN-LAST:event_houseBtnActionPerformed
 

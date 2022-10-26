@@ -31,5 +31,9 @@ public class PersonDirectory {
         personDir.add(newPerson);
         return newPerson;
     }
+
+    public void deletePerson(Person p) {
+        personDir.remove(p);
+    }
     
 }

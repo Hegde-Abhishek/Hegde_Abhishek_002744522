@@ -4,6 +4,9 @@
  */
 package UI;
 
+import Model.City;
+import Model.Community;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -11,12 +14,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Abhishek
  */
 public class HousePanel extends javax.swing.JPanel {
-
+    
+       ArrayList<Community> communities;
+       City city;
     /**
      * Creates new form HousePanel
      */
-    public HousePanel() {
+    public HousePanel(City city) {
         initComponents();
+        this.city = city;
+        loadCommunityTable();
     }
 
     /**
@@ -34,6 +41,7 @@ public class HousePanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         communityTable = new javax.swing.JTable();
+        saveBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel1.setText("Add a House");
@@ -57,6 +65,9 @@ public class HousePanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(communityTable);
 
+        saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        saveBtn.setText("Save");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,6 +87,10 @@ public class HousePanel extends javax.swing.JPanel {
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addContainerGap(202, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(saveBtn)
+                .addGap(311, 311, 311))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,21 +105,22 @@ public class HousePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addGap(110, 110, 110)
+                .addComponent(saveBtn)
+                .addContainerGap(189, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
        private void loadCommunityTable() {
        DefaultTableModel md=(DefaultTableModel) communityTable.getModel();
        md.setRowCount(0);
-//       communities=this.city.getCommunities();
-//       Object row[]= new Object[1];
-//            for(Community c : communities)
-//            {
-//
-//                row[0]=c.getCommunityName();
-//                md.addRow(row);
-//            }
+       communities=this.city.getCommunities();
+       Object row[]= new Object[1];
+            for(Community c : communities)
+            {
+                row[0]=c.getCommunityName();
+                md.addRow(row);
+            }
         }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable communityTable;
@@ -113,5 +129,6 @@ public class HousePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
 }

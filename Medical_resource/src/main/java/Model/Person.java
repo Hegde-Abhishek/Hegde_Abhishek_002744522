@@ -13,6 +13,7 @@ public class Person {
     private String name;
     private int personId;
     private int age;
+    private String gender;
 //    private String address;
     private City city;
     private Long phone;
@@ -44,6 +45,14 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public City getCity() {

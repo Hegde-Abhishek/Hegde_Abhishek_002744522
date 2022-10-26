@@ -35,7 +35,7 @@ public class PatientDirectory extends javax.swing.JPanel {
         addEncBtn = new javax.swing.JButton();
         addEncPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        endIdLabel = new javax.swing.JLabel();
+        encIdLabel = new javax.swing.JLabel();
         encIdField = new javax.swing.JTextField();
         bpLabel = new javax.swing.JLabel();
         bpField = new javax.swing.JTextField();
@@ -47,13 +47,13 @@ public class PatientDirectory extends javax.swing.JPanel {
 
         patientDirTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Patient Id", "Age", "Phone", "City", "Pincode"
             }
         ));
         jScrollPane1.setViewportView(patientDirTable);
@@ -67,7 +67,7 @@ public class PatientDirectory extends javax.swing.JPanel {
 
         jLabel1.setText("Date");
 
-        endIdLabel.setText("Encounter Id");
+        encIdLabel.setText("Encounter Id");
 
         bpLabel.setText("BP");
 
@@ -84,7 +84,7 @@ public class PatientDirectory extends javax.swing.JPanel {
                         .addGroup(addEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addEncPanelLayout.createSequentialGroup()
                                 .addGroup(addEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(endIdLabel)
+                                    .addComponent(encIdLabel)
                                     .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(addEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -108,7 +108,7 @@ public class PatientDirectory extends javax.swing.JPanel {
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(endIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(encIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(encIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -171,7 +171,7 @@ public class PatientDirectory extends javax.swing.JPanel {
     private javax.swing.JTextField bpField;
     private javax.swing.JLabel bpLabel;
     private javax.swing.JTextField encIdField;
-    private javax.swing.JLabel endIdLabel;
+    private javax.swing.JLabel encIdLabel;
     private javax.swing.JLabel heading;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
