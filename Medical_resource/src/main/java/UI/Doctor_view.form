@@ -56,6 +56,7 @@
                           <Component id="patientDirBtn" min="-2" max="-2" attributes="0"/>
                           <Component id="backBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="encounterHisBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="vitalSignsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -68,7 +69,9 @@
                       <Component id="patientDirBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="encounterHisBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="276" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="vitalSignsBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="235" max="32767" attributes="0"/>
                       <Component id="backBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
                   </Group>
@@ -98,6 +101,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="encounterHisBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="vitalSignsBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="View / Update Vital Signs"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vitalSignsBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

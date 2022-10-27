@@ -6,8 +6,11 @@ package UI;
 
 import Model.City;
 import Model.Community;
+import Model.Patient;
 import Model.Person;
 import Model.PersonDirectory;
+import Model.PatientDirectory;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +23,10 @@ public class PersonPanel extends javax.swing.JPanel {
     /**
      * Creates new form PersonPanel
      */
+    ArrayList<Person> person;
     PersonDirectory personDir;
+    PatientDirectory patientDir;
+//    Person addPatient;
 //    City cityName;
 //    Community communityName;
     
@@ -28,6 +34,7 @@ public class PersonPanel extends javax.swing.JPanel {
         initComponents();
         detailPanel.setVisible(false);
         this.personDir = personDir;
+        this.patientDir = new PatientDirectory();
 //        this.communityName = communityName;
 //        this.cityName = cityName;
         populatePersonTable();
@@ -441,6 +448,12 @@ public class PersonPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row you want to add as patient!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
+            Person addPatient=this.personDir.getPersonDir().get(selectedPerson);
+            JOptionPane.showMessageDialog(null,addPatient);
+            int uniqueID=addPatient.getPersonId();
+            Patient patient=new Patient (addPatient);
+            patientDir.addPatient(patient);
+//            populateTable(this.personDir);
             
         }
     }//GEN-LAST:event_addAsPatientBtnActionPerformed

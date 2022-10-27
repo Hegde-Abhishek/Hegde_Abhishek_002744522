@@ -4,6 +4,8 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Abhishek
@@ -15,6 +17,7 @@ public class EncounterHistory extends javax.swing.JPanel {
      */
     public EncounterHistory() {
         initComponents();
+        updateEncPanel.setVisible(false);
     }
 
     /**
@@ -27,32 +30,121 @@ public class EncounterHistory extends javax.swing.JPanel {
     private void initComponents() {
 
         header = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         encHisTable = new javax.swing.JTable();
+        updateBtn = new javax.swing.JButton();
+        updateEncPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        encIdLabel = new javax.swing.JLabel();
+        encIdField = new javax.swing.JTextField();
+        bpLabel = new javax.swing.JLabel();
+        bpField = new javax.swing.JTextField();
+        saveBtn = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        bpLabel1 = new javax.swing.JLabel();
+        bpField1 = new javax.swing.JTextField();
 
         header.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         header.setText("Encounter History");
 
-        encHisTable.setBackground(new java.awt.Color(51, 255, 255));
+        encHisTable.setBackground(new java.awt.Color(204, 255, 204));
         encHisTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "SSN", "Community", "City", "Date of birth", "Blood pressure", "Pulse", "Illness", "Encounter date", "Gender"
+                "Name", "SSN", "DOB", "Community", "City", "Encounter date", "Blood Pressure", "Illness", "Gender"
             }
         ));
-        jScrollPane1.setViewportView(encHisTable);
+        jScrollPane2.setViewportView(encHisTable);
+
+        updateBtn.setText("Update encounter details");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
+        updateEncPanel.setPreferredSize(new java.awt.Dimension(350, 252));
+
+        jLabel1.setText("Date");
+
+        encIdLabel.setText("Encounter Id");
+
+        bpLabel.setText("BP");
+
+        saveBtn.setText("Save");
+
+        bpLabel1.setText("Illness");
+
+        javax.swing.GroupLayout updateEncPanelLayout = new javax.swing.GroupLayout(updateEncPanel);
+        updateEncPanel.setLayout(updateEncPanelLayout);
+        updateEncPanelLayout.setHorizontalGroup(
+            updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateEncPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(updateEncPanelLayout.createSequentialGroup()
+                        .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(encIdLabel)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(encIdField)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
+                    .addGroup(updateEncPanelLayout.createSequentialGroup()
+                        .addComponent(bpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(bpField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(saveBtn)
+                        .addGroup(updateEncPanelLayout.createSequentialGroup()
+                            .addComponent(bpLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(bpField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(587, Short.MAX_VALUE))
+        );
+        updateEncPanelLayout.setVerticalGroup(
+            updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateEncPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(encIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(encIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bpLabel)
+                    .addComponent(bpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bpLabel1)
+                    .addComponent(bpField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(saveBtn)
+                .addGap(50, 50, 50))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(updateEncPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(297, 297, 297)
                 .addComponent(header)
                 .addContainerGap(302, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(updateBtn)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -60,15 +152,40 @@ public class EncounterHistory extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(header)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(updateBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(updateEncPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = encHisTable.getSelectedRow();
+        
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row.");
+            return;
+        }
+        updateEncPanel.setVisible(true);
+    }//GEN-LAST:event_updateBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bpField;
+    private javax.swing.JTextField bpField1;
+    private javax.swing.JLabel bpLabel;
+    private javax.swing.JLabel bpLabel1;
     private javax.swing.JTable encHisTable;
+    private javax.swing.JTextField encIdField;
+    private javax.swing.JLabel encIdLabel;
     private javax.swing.JLabel header;
-    private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton saveBtn;
+    private javax.swing.JButton updateBtn;
+    private javax.swing.JPanel updateEncPanel;
     // End of variables declaration//GEN-END:variables
 }

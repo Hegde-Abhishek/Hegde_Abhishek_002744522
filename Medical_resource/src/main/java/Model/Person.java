@@ -20,7 +20,6 @@ public class Person {
     private int pincode;
     private Community community;
     private String house;
-//    private House residence;
     private static int count=0;
 
     public String getName() {

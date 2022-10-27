@@ -33,6 +33,7 @@ public class Doctor_view extends javax.swing.JFrame {
         patientDirBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         encounterHisBtn = new javax.swing.JButton();
+        vitalSignsBtn = new javax.swing.JButton();
         rightPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,6 +59,13 @@ public class Doctor_view extends javax.swing.JFrame {
             }
         });
 
+        vitalSignsBtn.setText("View / Update Vital Signs");
+        vitalSignsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vitalSignsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -67,7 +75,8 @@ public class Doctor_view extends javax.swing.JFrame {
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(patientDirBtn)
                     .addComponent(backBtn)
-                    .addComponent(encounterHisBtn))
+                    .addComponent(encounterHisBtn)
+                    .addComponent(vitalSignsBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         leftPanelLayout.setVerticalGroup(
@@ -77,7 +86,9 @@ public class Doctor_view extends javax.swing.JFrame {
                 .addComponent(patientDirBtn)
                 .addGap(18, 18, 18)
                 .addComponent(encounterHisBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(vitalSignsBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addGap(147, 147, 147))
         );
@@ -133,6 +144,12 @@ public class Doctor_view extends javax.swing.JFrame {
         jSplitPane1.setRightComponent(encHistory);
     }//GEN-LAST:event_encounterHisBtnActionPerformed
 
+    private void vitalSignsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vitalSignsBtnActionPerformed
+        // TODO add your handling code here:
+        VitalSigns vitalSigns = new VitalSigns();
+        jSplitPane1.setRightComponent(vitalSigns);
+    }//GEN-LAST:event_vitalSignsBtnActionPerformed
+
     public void roleOf(String role){
         if(role.equals("admin")){
            backBtn.setVisible(true);
@@ -184,5 +201,6 @@ public class Doctor_view extends javax.swing.JFrame {
     private javax.swing.JPanel leftPanel;
     private javax.swing.JButton patientDirBtn;
     private javax.swing.JPanel rightPanel;
+    private javax.swing.JButton vitalSignsBtn;
     // End of variables declaration//GEN-END:variables
 }
