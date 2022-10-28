@@ -26,15 +26,15 @@ public class PersonPanel extends javax.swing.JPanel {
     ArrayList<Person> person;
     PersonDirectory personDir;
     PatientDirectory patientDir;
-//    Person addPatient;
+    Person addPatient;
 //    City cityName;
 //    Community communityName;
     
-    public PersonPanel(PersonDirectory personDir) {
+    public PersonPanel(PersonDirectory personDir, PatientDirectory patientDir) {
         initComponents();
         detailPanel.setVisible(false);
         this.personDir = personDir;
-        this.patientDir = new PatientDirectory();
+        this.patientDir = patientDir;
 //        this.communityName = communityName;
 //        this.cityName = cityName;
         populatePersonTable();
@@ -448,12 +448,11 @@ public class PersonPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row you want to add as patient!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            Person addPatient=this.personDir.getPersonDir().get(selectedPerson);
-            JOptionPane.showMessageDialog(null,addPatient);
+            addPatient=this.personDir.getPersonDir().get(selectedPerson);
             int uniqueID=addPatient.getPersonId();
             Patient patient=new Patient (addPatient);
             patientDir.addPatient(patient);
-//            populateTable(this.personDir);
+            populatePersonTable();
             
         }
     }//GEN-LAST:event_addAsPatientBtnActionPerformed
