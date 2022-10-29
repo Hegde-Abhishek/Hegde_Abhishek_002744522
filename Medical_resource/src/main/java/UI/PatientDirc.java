@@ -4,21 +4,31 @@
  */
 package UI;
 
+import Model.Patient;
+import Model.Person;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import Model.PatientDirectory;
+import Model.PersonDirectory;
 
 /**
  *
  * @author Abhishek
  */
-public class PatientDirectory extends javax.swing.JPanel {
+public class PatientDirc extends javax.swing.JPanel {
 
     /**
      * Creates new form PatientDirectory
      */
-    public PatientDirectory() {
+    PersonDirectory personDir;
+    PatientDirectory patientDir;
+    public PatientDirc(PersonDirectory personDir,PatientDirectory patientDir) {
         initComponents();
+        this.personDir = personDir;
+        this.patientDir = patientDir;
         addEncPanel.setVisible(false);
         createVitalSignsPanel.setVisible(false);
+        populatePatientTable();
     }
 
     /**
@@ -311,4 +321,23 @@ public class PatientDirectory extends javax.swing.JPanel {
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton saveBtn1;
     // End of variables declaration//GEN-END:variables
+
+    private void populatePatientTable() {
+        DefaultTableModel model = (DefaultTableModel) patientDirTable.getModel();
+        model.setRowCount(0);
+        
+        for(Patient p : patientDir.getPatientDir()) {
+            Object[] row = new Object[6];
+            row[0]= p;
+            row[1]= p.person.getPersonId();
+            row[2]= p.person.getAge();
+            row[3]= p.person.getPhone();
+            row[4]= p.person.getCity();
+//            row[5]= p.person.getCommunity();
+//            row[6]= p.person.getHouse();
+            row[5]= p.person.getPincode();
+            
+            model.addRow(row);
+        }
+    }
 }

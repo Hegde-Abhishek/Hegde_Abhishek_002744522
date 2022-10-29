@@ -19,7 +19,7 @@ public class Person {
     private Long phone;
     private int pincode;
     private Community community;
-    private String house;
+    private House residence;
     private static int count=0;
 
     public String getName() {
@@ -86,12 +86,12 @@ public class Person {
         this.community = community;
     }
 
-    public String getHouse() {
-        return house;
+    public House getResidence() {
+        return residence;
     }
 
-    public void setHouse(String house) {
-        this.house = house;
+    public void setResidence(House residence) {
+        this.residence = residence;
     }
 
     public static int getCount() {

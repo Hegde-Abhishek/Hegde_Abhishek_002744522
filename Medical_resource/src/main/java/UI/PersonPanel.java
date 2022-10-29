@@ -11,6 +11,7 @@ import Model.Person;
 import Model.PersonDirectory;
 import Model.PatientDirectory;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -77,6 +78,7 @@ public class PersonPanel extends javax.swing.JPanel {
         updatePersonBtn = new javax.swing.JButton();
         deletePersonBtn = new javax.swing.JButton();
         addAsPatientBtn = new javax.swing.JButton();
+        addAsDoctortBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Person Directory");
@@ -278,6 +280,13 @@ public class PersonPanel extends javax.swing.JPanel {
             }
         });
 
+        addAsDoctortBtn.setText("Add as doctor");
+        addAsDoctortBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAsDoctortBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -294,11 +303,13 @@ public class PersonPanel extends javax.swing.JPanel {
                         .addGap(44, 44, 44)
                         .addComponent(deletePersonBtn)
                         .addGap(44, 44, 44)
-                        .addComponent(addAsPatientBtn))
+                        .addComponent(addAsPatientBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(addAsDoctortBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(jLabel1)))
-                .addGap(131, 164, Short.MAX_VALUE))
+                .addGap(40, 40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,7 +323,8 @@ public class PersonPanel extends javax.swing.JPanel {
                     .addComponent(addPersonBtn)
                     .addComponent(updatePersonBtn)
                     .addComponent(deletePersonBtn)
-                    .addComponent(addAsPatientBtn))
+                    .addComponent(addAsPatientBtn)
+                    .addComponent(addAsDoctortBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(detailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -357,7 +369,7 @@ public class PersonPanel extends javax.swing.JPanel {
         p.setAge(age);
         p.setGender(gender);
         p.setPhone(phone);
-        p.setHouse(house);
+//        p.setResidence(house);
         p.setPincode(pincode);
         
         
@@ -389,7 +401,7 @@ public class PersonPanel extends javax.swing.JPanel {
         nameField.setText(selectedPerson.getName());
         ageField.setText(String.valueOf(selectedPerson.getAge()));
         phoneField.setText(String.valueOf(selectedPerson.getPhone()));
-        houseField.setText(String.valueOf(selectedPerson.getHouse()));
+//        houseField.setText(String.valueOf(selectedPerson.getHouse()));
         pincodeField.setText(String.valueOf(selectedPerson.getPincode()));
         
         
@@ -417,7 +429,7 @@ public class PersonPanel extends javax.swing.JPanel {
         selectedPerson.setName(nameField.getText());
         selectedPerson.setAge(Integer.parseInt(ageField.getText()));
         selectedPerson.setPhone(Long.parseLong(phoneField.getText()));
-        selectedPerson.setHouse(houseField.getText());
+//        selectedPerson.setHouse(houseField.getText());
         selectedPerson.setPincode(Integer.parseInt(pincodeField.getText()));
         
         
@@ -457,8 +469,19 @@ public class PersonPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_addAsPatientBtnActionPerformed
 
+    private void addAsDoctortBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAsDoctortBtnActionPerformed
+        // TODO add your handling code here:
+        int selcetedPerson =  personTable.getSelectedRow();
+        if (selcetedPerson < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row you want to add as patient!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            
+        }
+    }//GEN-LAST:event_addAsDoctortBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addAsDoctortBtn;
     private javax.swing.JButton addAsPatientBtn;
     private javax.swing.JButton addPersonBtn;
     private javax.swing.JLabel age;
@@ -501,7 +524,7 @@ public class PersonPanel extends javax.swing.JPanel {
             row[3]= p.getPhone();
             row[4]= p.getCity();
             row[5]= p.getCommunity();
-            row[6]= p.getHouse();
+            row[6]= p.getResidence();
             row[7]= p.getPincode();
             
             model.addRow(row);

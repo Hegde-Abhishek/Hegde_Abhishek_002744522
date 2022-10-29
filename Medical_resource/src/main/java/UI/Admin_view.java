@@ -5,8 +5,9 @@
 package UI;
 
 import Model.City;
+import Model.HospitalDirectory;
 import Model.PersonDirectory;
-
+import Model.PatientDirectory;
 /**
  *
  * @author Abhishek
@@ -18,11 +19,13 @@ public class Admin_view extends javax.swing.JFrame {
      */
     PersonDirectory personDir;
     PatientDirectory patientDir;
+    HospitalDirectory hospitalDir;
     City city;
-    public Admin_view(PersonDirectory personDir,PatientDirectory patientDir) {
+    public Admin_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir) {
         initComponents();
         this.personDir = personDir;
         this.patientDir = patientDir;
+        this.hospitalDir = hospitalDir;
         this.city = new City("Boston");
     }
 
@@ -40,10 +43,12 @@ public class Admin_view extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         personBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        patientBtn = new javax.swing.JButton();
         communityBtn = new javax.swing.JButton();
         houseBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
+        hospitalBtn = new javax.swing.JButton();
+        doctorDir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,12 +76,12 @@ public class Admin_view extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(204, 255, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("Patient");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        patientBtn.setBackground(new java.awt.Color(204, 255, 204));
+        patientBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        patientBtn.setText("Patient");
+        patientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                patientBtnActionPerformed(evt);
             }
         });
 
@@ -107,6 +112,24 @@ public class Admin_view extends javax.swing.JFrame {
             }
         });
 
+        hospitalBtn.setBackground(new java.awt.Color(204, 255, 204));
+        hospitalBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        hospitalBtn.setText("Add a hospital");
+        hospitalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hospitalBtnActionPerformed(evt);
+            }
+        });
+
+        doctorDir.setBackground(new java.awt.Color(204, 255, 204));
+        doctorDir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        doctorDir.setText("Doctor Directory");
+        doctorDir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorDirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,9 +143,11 @@ public class Admin_view extends javax.swing.JFrame {
                             .addComponent(communityBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(personBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(patientBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(houseBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hospitalBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(doctorDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,8 +162,12 @@ public class Admin_view extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                .addComponent(patientBtn)
+                .addGap(13, 13, 13)
+                .addComponent(doctorDir)
+                .addGap(34, 34, 34)
+                .addComponent(hospitalBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(35, 35, 35))
         );
@@ -187,13 +216,15 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void personBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personBtnActionPerformed
         // TODO add your handling code here:
-        PersonPanel personPanel = new PersonPanel(personDir,patientDir);
+        PersonPanel personPanel = new PersonPanel(personDir, patientDir);
         jSplitPane2.setRightComponent(personPanel);
     }//GEN-LAST:event_personBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void patientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        PatientDirc patientDirc = new PatientDirc(personDir, patientDir);
+        jSplitPane2.setRightComponent(patientDirc);
+    }//GEN-LAST:event_patientBtnActionPerformed
 
     private void communityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_communityBtnActionPerformed
         // TODO add your handling code here:
@@ -209,7 +240,22 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
+        Medical_resource medRes = new Medical_resource(personDir,patientDir,hospitalDir);
+        medRes.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void hospitalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalBtnActionPerformed
+        // TODO add your handling code here:
+        HospitalPanel hosPanel = new HospitalPanel(hospitalDir);
+        jSplitPane2.setRightComponent(hosPanel);
+    }//GEN-LAST:event_hospitalBtnActionPerformed
+
+    private void doctorDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorDirActionPerformed
+        // TODO add your handling code here:
+        DoctorPanel dp = new DoctorPanel();
+        jSplitPane2.setRightComponent(dp);
+    }//GEN-LAST:event_doctorDirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,14 +294,16 @@ public class Admin_view extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton communityBtn;
+    private javax.swing.JButton doctorDir;
+    private javax.swing.JButton hospitalBtn;
     private javax.swing.JButton houseBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton patientBtn;
     private javax.swing.JButton personBtn;
     // End of variables declaration//GEN-END:variables
 }

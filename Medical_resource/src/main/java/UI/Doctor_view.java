@@ -4,9 +4,10 @@
  */
 package UI;
 
+import Model.HospitalDirectory;
 import Model.PersonDirectory;
 import javax.swing.JOptionPane;
-
+import Model.PatientDirectory;
 /**
  *
  * @author Abhishek
@@ -18,6 +19,7 @@ public class Doctor_view extends javax.swing.JFrame {
      */
     PersonDirectory personDir;
     PatientDirectory patientDir;
+    HospitalDirectory hospitalDir;
     public Doctor_view(PersonDirectory personDir,PatientDirectory patientDir) {
         initComponents();
         this.personDir = personDir;
@@ -131,14 +133,14 @@ public class Doctor_view extends javax.swing.JFrame {
 
     private void patientDirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientDirBtnActionPerformed
         // TODO add your handling code here:
-        PatientDirectory patientDir = new PatientDirectory();
-        jSplitPane1.setRightComponent(patientDir);
+        PatientDirc patientDirc = new PatientDirc(personDir, patientDir);
+        jSplitPane1.setRightComponent(patientDirc);
     }//GEN-LAST:event_patientDirBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
 
         // TODO add your handling code here:
-        Admin_view adminView = new Admin_view(personDir,patientDir);
+        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir);
         adminView.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_backBtnActionPerformed

@@ -6,7 +6,10 @@ package UI;
 
 import Model.City;
 import Model.Community;
+import Model.House;
+import Model.Person;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +20,8 @@ public class HousePanel extends javax.swing.JPanel {
     
        ArrayList<Community> communities;
        City city;
+       ArrayList<Person> tempPeople;
+       Community community;
     /**
      * Creates new form HousePanel
      */
@@ -37,7 +42,7 @@ public class HousePanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         communityTable = new javax.swing.JTable();
@@ -67,6 +72,11 @@ public class HousePanel extends javax.swing.JPanel {
 
         saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -84,7 +94,7 @@ public class HousePanel extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(tName, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addContainerGap(202, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -100,7 +110,7 @@ public class HousePanel extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -110,6 +120,34 @@ public class HousePanel extends javax.swing.JPanel {
                 .addContainerGap(189, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedCommunity = communityTable.getSelectedRow();
+        if (selectedCommunity < 0 || selectedCommunity>1) {
+            JOptionPane.showMessageDialog(null, "Please select 1 community the house is in!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            if(tName.getText().isBlank())
+            {
+                JOptionPane.showMessageDialog(null, "Please house name!!", "Warning", JOptionPane.WARNING_MESSAGE);
+ 
+            }
+            else
+            {
+                community=communities.get(selectedCommunity);
+                House h=new House(tName.getText());
+//                h.setPeople(tempPeople);
+//                for(Person t : tempPeople)
+//                {
+//                    t.setResidence(h);
+//                }
+                community.addHouseToList(h);
+                JOptionPane.showMessageDialog(null, "House added"+h);
+            }
+            
+        }
+    }//GEN-LAST:event_saveBtnActionPerformed
 
        private void loadCommunityTable() {
        DefaultTableModel md=(DefaultTableModel) communityTable.getModel();
@@ -128,7 +166,7 @@ public class HousePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JTextField tName;
     // End of variables declaration//GEN-END:variables
 }

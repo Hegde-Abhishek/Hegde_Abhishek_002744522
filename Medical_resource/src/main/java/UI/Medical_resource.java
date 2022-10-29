@@ -4,10 +4,11 @@
  */
 package UI;
 
+import Model.HospitalDirectory;
 import Model.Person;
 import Model.PersonDirectory;
 import javax.swing.JOptionPane;
-
+import Model.PatientDirectory;
 /**
  *
  * @author Abhishek
@@ -19,17 +20,20 @@ public class Medical_resource extends javax.swing.JFrame {
      */
     PersonDirectory personDir;
     PatientDirectory patientDir;
+    HospitalDirectory hospitalDir;
     public Medical_resource() {
         initComponents();
         personDir = new PersonDirectory();
         patientDir = new PatientDirectory();
+        hospitalDir = new HospitalDirectory();
         registerPanel.setVisible(false);
     }
     
-        public Medical_resource(PersonDirectory personDirectory, PatientDirectory patientDirectory) {
+        public Medical_resource(PersonDirectory personDirectory, PatientDirectory patientDirectory, HospitalDirectory hospitalDir) {
         initComponents();
         this.personDir = personDirectory;
         this.patientDir = patientDirectory;
+        this.hospitalDir = hospitalDir;
         registerPanel.setVisible(false);
     }
 
@@ -315,7 +319,7 @@ public class Medical_resource extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = this.usernameField.getText().trim();
         String pswd = this.jPasswordField1.getText().trim();
-        Admin_view adminView = new Admin_view(personDir,patientDir);
+        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir);
         Doctor_view docView = new Doctor_view(personDir,patientDir);
         
         if(username.equals("admin") && pswd.equals("admin")){
@@ -369,7 +373,7 @@ public class Medical_resource extends javax.swing.JFrame {
         p.setAge(age);
         p.setGender(gender);
         p.setPhone(phone);
-        p.setHouse(house);
+//        p.setHouse(house);
         p.setPincode(pincode);
 
         JOptionPane.showMessageDialog(null, "New person added");

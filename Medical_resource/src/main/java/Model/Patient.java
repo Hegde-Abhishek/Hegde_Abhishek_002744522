@@ -10,7 +10,7 @@ package Model;
  */
 public class Patient extends Person{
     private int patientId;
-    private Person person;
+    public Person person;
     private EncounterHistory encounterHistory;
 
     public Patient(Person p) {
@@ -42,5 +42,9 @@ public class Patient extends Person{
         this.encounterHistory = encounterHistory;
     }
     
+    @Override
+    public String toString(){
+        return person.getName();
+    }
     
 }
