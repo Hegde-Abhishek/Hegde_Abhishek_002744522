@@ -14,13 +14,13 @@ public class Person {
     private int personId;
     private int age;
     private String gender;
-//    private String address;
     private City city;
     private Long phone;
     private int pincode;
     private Community community;
     private House residence;
     private static int count=0;
+    private boolean isPatient = false;
 
     public String getName() {
         return name;
@@ -100,6 +100,14 @@ public class Person {
 
     public static void setCount(int count) {
         Person.count = count;
+    }
+
+    public boolean isIsPatient() {
+        return isPatient;
+    }
+
+    public void setIsPatient(boolean isPatient) {
+        this.isPatient = isPatient;
     }
     
     @Override

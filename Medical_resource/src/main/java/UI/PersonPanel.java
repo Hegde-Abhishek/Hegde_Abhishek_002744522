@@ -6,12 +6,16 @@ package UI;
 
 import Model.City;
 import Model.Community;
+import Model.Doctor;
+import Model.DoctorDirectory;
 import Model.Patient;
 import Model.Person;
 import Model.PersonDirectory;
 import Model.PatientDirectory;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,17 +29,20 @@ public class PersonPanel extends javax.swing.JPanel {
      * Creates new form PersonPanel
      */
     ArrayList<Person> person;
+    ArrayList<Community> communities;
     PersonDirectory personDir;
     PatientDirectory patientDir;
-    Person addPatient;
+    DoctorDirectory docDir;
+    Person addPatient,addDoctor;
 //    City cityName;
 //    Community communityName;
     
-    public PersonPanel(PersonDirectory personDir, PatientDirectory patientDir) {
+    public PersonPanel(PersonDirectory personDir, PatientDirectory patientDir,DoctorDirectory docDir) {
         initComponents();
         detailPanel.setVisible(false);
         this.personDir = personDir;
         this.patientDir = patientDir;
+        this.docDir = docDir;
 //        this.communityName = communityName;
 //        this.cityName = cityName;
         populatePersonTable();
@@ -79,6 +86,9 @@ public class PersonPanel extends javax.swing.JPanel {
         deletePersonBtn = new javax.swing.JButton();
         addAsPatientBtn = new javax.swing.JButton();
         addAsDoctortBtn = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Person Directory");
@@ -287,6 +297,19 @@ public class PersonPanel extends javax.swing.JPanel {
             }
         });
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -294,7 +317,6 @@ public class PersonPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(detailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(addPersonBtn)
@@ -310,23 +332,38 @@ public class PersonPanel extends javax.swing.JPanel {
                         .addGap(79, 79, 79)
                         .addComponent(jLabel1)))
                 .addGap(40, 40, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(detailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(143, 143, 143))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addPersonBtn)
-                    .addComponent(updatePersonBtn)
-                    .addComponent(deletePersonBtn)
-                    .addComponent(addAsPatientBtn)
-                    .addComponent(addAsDoctortBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(detailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addPersonBtn)
+                            .addComponent(updatePersonBtn)
+                            .addComponent(deletePersonBtn)
+                            .addComponent(addAsPatientBtn)
+                            .addComponent(addAsDoctortBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(detailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -461,7 +498,7 @@ public class PersonPanel extends javax.swing.JPanel {
         }
         else{
             addPatient=this.personDir.getPersonDir().get(selectedPerson);
-            int uniqueID=addPatient.getPersonId();
+            addPatient.setIsPatient(true);
             Patient patient=new Patient (addPatient);
             patientDir.addPatient(patient);
             populatePersonTable();
@@ -473,11 +510,34 @@ public class PersonPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selcetedPerson =  personTable.getSelectedRow();
         if (selcetedPerson < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row you want to add as patient!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select a row you want to add as doctor!!", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-            
+            addDoctor=this.personDir.getPersonDir().get(selcetedPerson);
+            int uniqueID=addDoctor.getPersonId();
+            Doctor doc=new Doctor (addDoctor);
+            docDir.addDoctor(doc);
+            populatePersonTable();
         }
     }//GEN-LAST:event_addAsDoctortBtnActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+//        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+//        jComboBox1.setModel( model );
+//          JComboBox jcbo = new JComboBox();
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) jComboBox1.getModel();
+//        model.removeAllElements();
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        Object item[]= new Object[1];
+        for (Community i : communities) {
+            item[0]=i.getCommunityName();
+            model.addElement(item);
+        }
+        System.out.println(Arrays.toString(item));
+        JComboBox comboBox = new JComboBox(item);
+        comboBox.setModel(model);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -497,8 +557,11 @@ public class PersonPanel extends javax.swing.JPanel {
     private javax.swing.JPanel genderPanel;
     private javax.swing.JLabel house;
     private javax.swing.JTextField houseField;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton maleRadioButton;
     private javax.swing.JLabel name;
     private javax.swing.JTextField nameField;

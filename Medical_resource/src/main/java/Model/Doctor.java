@@ -41,4 +41,8 @@ public class Doctor extends Person{
         this.hospitalId = hospitalId;
     }
     
+    @Override
+    public String toString(){
+        return person.getName();
+    }
 }

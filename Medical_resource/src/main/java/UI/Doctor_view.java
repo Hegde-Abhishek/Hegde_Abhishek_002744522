@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Model.DoctorDirectory;
+import Model.EncounterHistory;
 import Model.HospitalDirectory;
 import Model.PersonDirectory;
 import javax.swing.JOptionPane;
@@ -20,6 +22,8 @@ public class Doctor_view extends javax.swing.JFrame {
     PersonDirectory personDir;
     PatientDirectory patientDir;
     HospitalDirectory hospitalDir;
+    DoctorDirectory docDir;
+    EncounterHistory encounterDir;
     public Doctor_view(PersonDirectory personDir,PatientDirectory patientDir) {
         initComponents();
         this.personDir = personDir;
@@ -41,6 +45,7 @@ public class Doctor_view extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
         encounterHisBtn = new javax.swing.JButton();
         vitalSignsBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
         rightPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,6 +78,13 @@ public class Doctor_view extends javax.swing.JFrame {
             }
         });
 
+        logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -83,7 +95,8 @@ public class Doctor_view extends javax.swing.JFrame {
                     .addComponent(patientDirBtn)
                     .addComponent(backBtn)
                     .addComponent(encounterHisBtn)
-                    .addComponent(vitalSignsBtn))
+                    .addComponent(vitalSignsBtn)
+                    .addComponent(logoutBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         leftPanelLayout.setVerticalGroup(
@@ -97,7 +110,9 @@ public class Doctor_view extends javax.swing.JFrame {
                 .addComponent(vitalSignsBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
                 .addComponent(backBtn)
-                .addGap(147, 147, 147))
+                .addGap(18, 18, 18)
+                .addComponent(logoutBtn)
+                .addGap(106, 106, 106))
         );
 
         jSplitPane1.setLeftComponent(leftPanel);
@@ -140,14 +155,14 @@ public class Doctor_view extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
 
         // TODO add your handling code here:
-        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir);
+        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir);
         adminView.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void encounterHisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encounterHisBtnActionPerformed
         // TODO add your handling code here:
-        EncounterHistory encHistory = new EncounterHistory();
+        EncounterHis encHistory = new EncounterHis();
         jSplitPane1.setRightComponent(encHistory);
     }//GEN-LAST:event_encounterHisBtnActionPerformed
 
@@ -157,11 +172,17 @@ public class Doctor_view extends javax.swing.JFrame {
         jSplitPane1.setRightComponent(vitalSigns);
     }//GEN-LAST:event_vitalSignsBtnActionPerformed
 
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        Medical_resource medRes = new Medical_resource(personDir,patientDir,hospitalDir);
+        medRes.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
     public void roleOf(String role){
         if(role.equals("admin")){
            backBtn.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Galat hain yeh");
             backBtn.setVisible(false);
         }
     }
@@ -206,6 +227,7 @@ public class Doctor_view extends javax.swing.JFrame {
     private javax.swing.JButton encounterHisBtn;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel leftPanel;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton patientDirBtn;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JButton vitalSignsBtn;

@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Model.DoctorDirectory;
+import Model.EncounterHistory;
 import Model.HospitalDirectory;
 import Model.Person;
 import Model.PersonDirectory;
@@ -21,11 +23,15 @@ public class Medical_resource extends javax.swing.JFrame {
     PersonDirectory personDir;
     PatientDirectory patientDir;
     HospitalDirectory hospitalDir;
+    DoctorDirectory docDir;
+    EncounterHistory encounterDir;
     public Medical_resource() {
         initComponents();
         personDir = new PersonDirectory();
         patientDir = new PatientDirectory();
         hospitalDir = new HospitalDirectory();
+        docDir = new DoctorDirectory();
+        encounterDir = new EncounterHistory();
         registerPanel.setVisible(false);
     }
     
@@ -319,7 +325,7 @@ public class Medical_resource extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = this.usernameField.getText().trim();
         String pswd = this.jPasswordField1.getText().trim();
-        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir);
+        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir);
         Doctor_view docView = new Doctor_view(personDir,patientDir);
         
         if(username.equals("admin") && pswd.equals("admin")){

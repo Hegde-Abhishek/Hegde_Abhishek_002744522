@@ -27,7 +27,16 @@ public class PersonDirectory {
     }
     
     public Person addNewPerson() {
+        int size = personDir.size();
+        int personId;
+        if(size == 0){
+            personId = 1;
+        } else {
+            personId = personDir.get((size - 1)).getPersonId() + 1;
+        }
+        
         Person newPerson = new Person();
+        newPerson.setPersonId(personId);
         personDir.add(newPerson);
         return newPerson;
     }

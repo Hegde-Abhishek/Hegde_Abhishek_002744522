@@ -4,30 +4,31 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author Abhishek
  */
 public class Encounter {
-    private String date;
+    private Date date;
     private int encounterId;
     private VitalSigns vitals;
     private String illness;
 //    private static int count=1;
+    private String patientName;
+    private String doctorName;
+    private int patientId;
+    private int doctorId;
 
-    public Encounter(int encounterId, VitalSigns vitals) {
-        this.encounterId = encounterId;
-        this.vitals = vitals;
-    }
-    
-
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
+    
 
     public int getEncounterId() {
         return encounterId;
@@ -51,6 +52,38 @@ public class Encounter {
 
     public void setIllness(String illness) {
         this.illness = illness;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
     
     

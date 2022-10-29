@@ -31,6 +31,10 @@ public class HospitalDirectory {
         hospitalDir.add(newHospital);
         return newHospital;
     }
+
+    public void deletePerson(Hospital h) {
+        hospitalDir.remove(h);
+    }
     
     
 }

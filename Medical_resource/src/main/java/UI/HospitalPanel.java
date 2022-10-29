@@ -55,7 +55,7 @@ public class HospitalPanel extends javax.swing.JPanel {
         nameField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        updateSaveBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
@@ -92,7 +92,12 @@ public class HospitalPanel extends javax.swing.JPanel {
 
         jLabel8.setText("City :");
 
-        jButton4.setText("Save");
+        updateSaveBtn.setText("Save");
+        updateSaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateSaveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout detPanelLayout = new javax.swing.GroupLayout(detPanel);
         detPanel.setLayout(detPanelLayout);
@@ -100,7 +105,7 @@ public class HospitalPanel extends javax.swing.JPanel {
             detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detPanelLayout.createSequentialGroup()
                 .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
+                    .addComponent(updateSaveBtn)
                     .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(detPanelLayout.createSequentialGroup()
                             .addComponent(jLabel6)
@@ -136,7 +141,7 @@ public class HospitalPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(pincodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jButton4))
+                .addComponent(updateSaveBtn))
         );
 
         updateBtn.setText("Update");
@@ -147,6 +152,11 @@ public class HospitalPanel extends javax.swing.JPanel {
         });
 
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -161,31 +171,8 @@ public class HospitalPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(saveBtn)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(pincodeF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(78, 78, 78)
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nameF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(114, 114, 114)
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(244, 244, 244)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(detPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,6 +183,28 @@ public class HospitalPanel extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addComponent(jButton2)
                 .addGap(135, 135, 135))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(saveBtn)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(pincodeF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(78, 78, 78)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(nameF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(114, 114, 114)
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,15 +253,58 @@ public class HospitalPanel extends javax.swing.JPanel {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
+        int selectedRowIndex = hospitalTable.getSelectedRow();
+        if(selectedRowIndex<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
         detPanel.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel) hospitalTable.getModel();
+        Hospital selectedPerson = (Hospital) model.getValueAt(selectedRowIndex, 0);
+        nameField.setText(selectedPerson.getHospitalName());
+        pincodeField.setText(String.valueOf(selectedPerson.getPincode()));
     }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void updateSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateSaveBtnActionPerformed
+        // TODO add your handling code here:
+        String name = nameField.getText();
+//        City cityName = cityField.getText();
+//        Community communityName = communityField.getText();
+        int pincode = Integer.parseInt(pincodeField.getText());
+        if((name == null || name.isEmpty())){
+            JOptionPane.showMessageDialog(null, "Please enter all fields");
+            return;
+        }
+        
+        int selectedRowIndex = hospitalTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) hospitalTable.getModel();
+        Person selectedPerson = (Person) model.getValueAt(selectedRowIndex, 0);
+        selectedPerson.setName(nameField.getText());
+        selectedPerson.setPincode(Integer.parseInt(pincodeField.getText()));
+        JOptionPane.showMessageDialog(null, "Person updated successfully");
+        populateHospitalTable();
+    }//GEN-LAST:event_updateSaveBtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = hospitalTable.getSelectedRow();
+        
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) hospitalTable.getModel();
+        Hospital selectedPerson = (Hospital) model.getValueAt(selectedRowIndex, 0);
+        hospitalDir.deletePerson(selectedPerson);
+        JOptionPane.showMessageDialog(null, "Person record deleted");
+        populateHospitalTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel detPanel;
     private javax.swing.JTable hospitalTable;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -273,6 +325,7 @@ public class HospitalPanel extends javax.swing.JPanel {
     private javax.swing.JTextField pincodeField;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton updateBtn;
+    private javax.swing.JButton updateSaveBtn;
     // End of variables declaration//GEN-END:variables
 
     private void populateHospitalTable() {

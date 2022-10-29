@@ -24,5 +24,19 @@ public class EncounterHistory {
     public void setEncounters(ArrayList<Encounter> encounters) {
         this.encounters = encounters;
     }
+
+    public Encounter addEncounter() {
+        int size = encounters.size();
+        int encounterId;
+        if(size == 0){
+            encounterId = 1;
+        } else {
+            encounterId = encounters.get((size - 1)).getEncounterId()+ 1;
+        }
+        Encounter e = new Encounter();
+        e.setEncounterId(encounterId);
+        encounters.add(e);
+        return e;
+    }
     
 }

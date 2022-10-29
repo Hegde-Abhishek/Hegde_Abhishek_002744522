@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
  *
  * @author Abhishek
  */
-public class EncounterHistory extends javax.swing.JPanel {
+public class EncounterHis extends javax.swing.JPanel {
 
     /**
      * Creates new form Encounter_History
      */
-    public EncounterHistory() {
+    public EncounterHis() {
         initComponents();
         updateEncPanel.setVisible(false);
     }
@@ -50,13 +50,13 @@ public class EncounterHistory extends javax.swing.JPanel {
         encHisTable.setBackground(new java.awt.Color(204, 255, 204));
         encHisTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "SSN", "DOB", "Community", "City", "Encounter date", "Blood Pressure", "Illness", "Gender"
+                "Patient Name", "Patient Id", "Doctor Name", "Doctor Id", "Encounter date", "Description"
             }
         ));
         jScrollPane2.setViewportView(encHisTable);

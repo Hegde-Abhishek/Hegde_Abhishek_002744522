@@ -24,5 +24,10 @@ public class DoctorDirectory {
     public void setDoctorDir(ArrayList<Doctor> doctorDir) {
         this.doctorDir = doctorDir;
     }
+
+    public void addDoctor(Doctor doc) {
+        doc.setDoctorId(doc.person.getPersonId());
+        doctorDir.add(doc);
+    }
     
 }

@@ -5,6 +5,8 @@
 package UI;
 
 import Model.City;
+import Model.DoctorDirectory;
+import Model.EncounterHistory;
 import Model.HospitalDirectory;
 import Model.PersonDirectory;
 import Model.PatientDirectory;
@@ -20,12 +22,16 @@ public class Admin_view extends javax.swing.JFrame {
     PersonDirectory personDir;
     PatientDirectory patientDir;
     HospitalDirectory hospitalDir;
+    DoctorDirectory docDir;
+    EncounterHistory encounterDir;
     City city;
-    public Admin_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir) {
+    public Admin_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir, DoctorDirectory docDir,EncounterHistory encounterDir) {
         initComponents();
         this.personDir = personDir;
         this.patientDir = patientDir;
         this.hospitalDir = hospitalDir;
+        this.docDir = docDir;
+        this.encounterDir = encounterDir;
         this.city = new City("Boston");
     }
 
@@ -49,6 +55,7 @@ public class Admin_view extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         hospitalBtn = new javax.swing.JButton();
         doctorDir = new javax.swing.JButton();
+        encounterBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -130,6 +137,15 @@ public class Admin_view extends javax.swing.JFrame {
             }
         });
 
+        encounterBtn.setBackground(new java.awt.Color(204, 255, 204));
+        encounterBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        encounterBtn.setText("Encounters");
+        encounterBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                encounterBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,7 +163,8 @@ public class Admin_view extends javax.swing.JFrame {
                     .addComponent(houseBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(hospitalBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(doctorDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(doctorDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(encounterBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,7 +184,9 @@ public class Admin_view extends javax.swing.JFrame {
                 .addComponent(doctorDir)
                 .addGap(34, 34, 34)
                 .addComponent(hospitalBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(encounterBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(35, 35, 35))
         );
@@ -216,7 +235,7 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void personBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personBtnActionPerformed
         // TODO add your handling code here:
-        PersonPanel personPanel = new PersonPanel(personDir, patientDir);
+        PersonPanel personPanel = new PersonPanel(personDir, patientDir,docDir);
         jSplitPane2.setRightComponent(personPanel);
     }//GEN-LAST:event_personBtnActionPerformed
 
@@ -257,6 +276,12 @@ public class Admin_view extends javax.swing.JFrame {
         jSplitPane2.setRightComponent(dp);
     }//GEN-LAST:event_doctorDirActionPerformed
 
+    private void encounterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encounterBtnActionPerformed
+        // TODO add your handling code here:
+        EncounterForAdmin encForAdmin = new EncounterForAdmin(personDir,docDir,encounterDir);
+        jSplitPane2.setRightComponent(encForAdmin);
+    }//GEN-LAST:event_encounterBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -295,6 +320,7 @@ public class Admin_view extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton communityBtn;
     private javax.swing.JButton doctorDir;
+    private javax.swing.JButton encounterBtn;
     private javax.swing.JButton hospitalBtn;
     private javax.swing.JButton houseBtn;
     private javax.swing.JButton jButton1;

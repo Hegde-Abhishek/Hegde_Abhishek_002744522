@@ -26,6 +26,7 @@ public class PatientDirectory {
     }
     
     public void addPatient(Patient patient){
+        patient.setPatientId(patient.person.getPersonId());
         patientDir.add(patient);
     }
 }
