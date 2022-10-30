@@ -29,5 +29,9 @@ public class DoctorDirectory {
         doc.setDoctorId(doc.person.getPersonId());
         doctorDir.add(doc);
     }
+
+    public void deletePerson(Doctor selectedDoctor) {
+        doctorDir.remove(selectedDoctor);
+    }
     
 }

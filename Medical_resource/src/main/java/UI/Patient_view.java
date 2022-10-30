@@ -26,8 +26,10 @@ public class Patient_view extends javax.swing.JFrame {
     DoctorDirectory docDir;
     EncounterHistory encounterDir;
     VitalSignsHistory vitalSignsDir;
-    public Patient_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir, VitalSignsHistory vitalSignsDir) {
+    int loginId;
+    public Patient_view(int loginId,PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir, VitalSignsHistory vitalSignsDir) {
         initComponents();
+        this.loginId = loginId;
         this.personDir = personDir;
         this.patientDir = patientDir;
         this.hospitalDir = hospitalDir;
@@ -57,6 +59,11 @@ public class Patient_view extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("My Profile");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("My Encounters");
@@ -144,6 +151,12 @@ public class Patient_view extends javax.swing.JFrame {
         medRes.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MyProfilePanel myProfile = new MyProfilePanel(patientDir);
+        jSplitPane1.setRightComponent(myProfile);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -72,24 +72,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="communityBtn" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="personBtn" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="patientBtn" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="houseBtn" alignment="1" max="32767" attributes="0"/>
-                          <Component id="logoutBtn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="hospitalBtn" alignment="1" max="32767" attributes="0"/>
-                          <Component id="doctorDir" alignment="1" max="32767" attributes="0"/>
-                          <Component id="encounterBtn" alignment="1" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="logoutBtn" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="communityBtn" alignment="1" max="32767" attributes="0"/>
+                      <Component id="personBtn" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="patientBtn" alignment="1" min="-2" pref="163" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="houseBtn" alignment="1" max="32767" attributes="0"/>
+                  <Component id="hospitalBtn" alignment="1" max="32767" attributes="0"/>
+                  <Component id="doctorDir" alignment="1" max="32767" attributes="0"/>
+                  <Component id="encounterBtn" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -169,7 +164,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Create a community"/>
+                <Property name="text" type="java.lang.String" value="Add a city / community"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="communityBtnActionPerformed"/>

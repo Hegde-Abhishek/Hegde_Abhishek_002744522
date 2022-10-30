@@ -45,4 +45,21 @@ public class PersonDirectory {
         personDir.remove(p);
     }
     
+    public Person login(long userId, String password) {
+        for (Person person : personDir) {
+            if (person.getPersonId() == userId && person.getPassword().equals(password)) {
+                return person;
+            }
+        }
+    return null;
+    }
+    public Person find(long userId) {
+        for (Person person : personDir) {
+            if (person.getPersonId() == userId) {
+                return person;
+            }
+        }
+    return null;
+    }
+    
 }

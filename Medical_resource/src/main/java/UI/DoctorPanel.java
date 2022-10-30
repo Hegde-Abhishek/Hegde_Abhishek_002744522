@@ -6,6 +6,9 @@ package UI;
 
 import Model.Doctor;
 import Model.DoctorDirectory;
+import Model.Patient;
+import Model.Person;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +21,7 @@ public class DoctorPanel extends javax.swing.JPanel {
      * Creates new form DoctorPanel
      */
     DoctorDirectory docDir;
+    Person person;
     public DoctorPanel(DoctorDirectory docDir) {
         initComponents();
         detPanel.setVisible(false);
@@ -40,11 +44,11 @@ public class DoctorPanel extends javax.swing.JPanel {
         addDoctorBtn = new javax.swing.JButton();
         detPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nameF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        ageF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        hosNameF = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         genderPanel = new javax.swing.JPanel();
@@ -52,7 +56,7 @@ public class DoctorPanel extends javax.swing.JPanel {
         maleRadioButton = new javax.swing.JRadioButton();
         femaleRadioButton = new javax.swing.JRadioButton();
         updateDoctorBtn = new javax.swing.JButton();
-        updateDoctorBtn1 = new javax.swing.JButton();
+        delDoctorBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Doctor Directory");
@@ -65,7 +69,7 @@ public class DoctorPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Name", "Doctor Id", "Age", "Gender", "Hospital Name"
+                "Name", "Doctor Id", "Age", "Hospital Name", "Gender"
             }
         ));
         jScrollPane1.setViewportView(docTable);
@@ -84,8 +88,18 @@ public class DoctorPanel extends javax.swing.JPanel {
         jLabel5.setText("Hospital Name :");
 
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         gender.setText("Gender :");
 
@@ -100,9 +114,9 @@ public class DoctorPanel extends javax.swing.JPanel {
             .addGroup(genderPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(gender)
-                .addGap(31, 31, 31)
+                .addGap(39, 39, 39)
                 .addComponent(maleRadioButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(femaleRadioButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -127,16 +141,16 @@ public class DoctorPanel extends javax.swing.JPanel {
                     .addGroup(detPanelLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(hosNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(detPanelLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(46, 46, 46)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nameF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(detPanelLayout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addGap(46, 46, 46)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ageF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(detPanelLayout.createSequentialGroup()
                             .addComponent(saveBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,15 +164,15 @@ public class DoctorPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ageF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hosNameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(genderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
@@ -175,10 +189,10 @@ public class DoctorPanel extends javax.swing.JPanel {
             }
         });
 
-        updateDoctorBtn1.setText("Delete a doctor");
-        updateDoctorBtn1.addActionListener(new java.awt.event.ActionListener() {
+        delDoctorBtn.setText("Delete a doctor");
+        delDoctorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateDoctorBtn1ActionPerformed(evt);
+                delDoctorBtnActionPerformed(evt);
             }
         });
 
@@ -198,7 +212,7 @@ public class DoctorPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(updateDoctorBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(updateDoctorBtn1)))
+                        .addComponent(delDoctorBtn)))
                 .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(detPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,7 +229,7 @@ public class DoctorPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addDoctorBtn)
                     .addComponent(updateDoctorBtn)
-                    .addComponent(updateDoctorBtn1))
+                    .addComponent(delDoctorBtn))
                 .addGap(41, 41, 41)
                 .addComponent(detPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(72, 72, 72))
@@ -232,33 +246,122 @@ public class DoctorPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         detPanel.setVisible(true);
         saveBtn.setVisible(false);
+        int selectedRowIndex = docTable.getSelectedRow();
+        if(selectedRowIndex<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) docTable.getModel();
+        Doctor selectedDoc = (Doctor) model.getValueAt(selectedRowIndex, 0);
+        nameF.setText(selectedDoc.getName());
+        ageF.setText(String.valueOf(selectedDoc.getAge()));
+        hosNameF.setText(selectedDoc.getHospitalName());
+//        String gender = "";
+//        if(gender.getText()="male")
+//        {
+//            maleRadioButton.isSelected();
+//        } else if(gender.getText()="female")
+//        {
+//            femaleRadioButton.isSelected();
+//        }
     }//GEN-LAST:event_updateDoctorBtnActionPerformed
 
-    private void updateDoctorBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDoctorBtn1ActionPerformed
+    private void delDoctorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delDoctorBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_updateDoctorBtn1ActionPerformed
+        int selectedRowIndex = docTable.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) docTable.getModel();
+        Doctor selectedDoctor = (Doctor) model.getValueAt(selectedRowIndex, 0);
+        docDir.deletePerson(selectedDoctor);
+        JOptionPane.showMessageDialog(null, "Person record deleted");
+        populateDocTable();
+        
+    }//GEN-LAST:event_delDoctorBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+        String name = nameF.getText();
+        int age = Integer.parseInt(ageF.getText());
+        String hosName = hosNameF.getText();
+        String gender = "";
+        if(maleRadioButton.isSelected())
+        {
+            gender="male";
+        } else if(femaleRadioButton.isSelected())
+        {
+            gender="female";
+        }
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter all fields");
+            return;
+        }
+        Doctor d = new Doctor(person);
+        docDir.addDoctor(d);
+        d.setName(name);
+        d.setAge(age);
+        d.setHospitalName(hosName);
+        d.setGender(gender);
+        JOptionPane.showMessageDialog(null, "New person added");
+        detPanel.setVisible(false);
+        nameF.setText("");
+        ageF.setText("");
+        hosNameF.setText("");
+        maleRadioButton.setText("");
+        populateDocTable();
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        String name = nameF.getText();
+        int age = Integer.parseInt(ageF.getText());
+        String houseName = hosNameF.getText();
+        String gender = "";
+        if(maleRadioButton.isSelected())
+        {
+            gender="male";
+        } else if(femaleRadioButton.isSelected())
+        {
+            gender="female";
+        }
+        if(name == null || name.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter all fields");
+            return;
+        }
+        int selectedRowIndex = docTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) docTable.getModel();
+        Doctor selectedDoc = (Doctor) model.getValueAt(selectedRowIndex, 0);
+        selectedDoc.setName(nameF.getText());
+        selectedDoc.setAge(Integer.parseInt(ageF.getText()));
+        selectedDoc.setHospitalName(houseName);
+        selectedDoc.setGender(gender);
+        JOptionPane.showMessageDialog(null, "Person updated successfully");
+        populateDocTable();
+    }//GEN-LAST:event_updateBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDoctorBtn;
+    private javax.swing.JTextField ageF;
+    private javax.swing.JButton delDoctorBtn;
     private javax.swing.JPanel detPanel;
     private javax.swing.JTable docTable;
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JLabel gender;
     private javax.swing.JPanel genderPanel;
+    private javax.swing.JTextField hosNameF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JRadioButton maleRadioButton;
+    private javax.swing.JTextField nameF;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton updateBtn;
     private javax.swing.JButton updateDoctorBtn;
-    private javax.swing.JButton updateDoctorBtn1;
     // End of variables declaration//GEN-END:variables
 
     private void populateDocTable() {

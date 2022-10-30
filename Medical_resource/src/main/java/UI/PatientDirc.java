@@ -206,6 +206,11 @@ public class PatientDirc extends javax.swing.JPanel {
         });
 
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         name.setText("Name :");
 
@@ -413,7 +418,7 @@ public class PatientDirc extends javax.swing.JPanel {
         int pincode = Integer.parseInt(pincodeField.getText());
         int selectedRowIndex = patientDirTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) patientDirTable.getModel();
-        Person selectedPerson = (Person) model.getValueAt(selectedRowIndex, 0);
+        Patient selectedPerson = (Patient) model.getValueAt(selectedRowIndex, 0);
         selectedPerson.setName(nameField.getText());
         selectedPerson.setAge(Integer.parseInt(ageField.getText()));
         selectedPerson.setPhone(Long.parseLong(phoneField.getText()));
@@ -421,6 +426,23 @@ public class PatientDirc extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Patient updated successfully");
         populatePatientTable();
     }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+        String name = nameField.getText();
+        int age = Integer.parseInt(ageField.getText());
+        long phone = Long.parseLong(phoneField.getText());
+        int pincode = Integer.parseInt(pincodeField.getText());
+        int selectedRowIndex = patientDirTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) patientDirTable.getModel();
+        Patient selectedPerson = (Patient) model.getValueAt(selectedRowIndex, 0);
+        selectedPerson.setName(nameField.getText());
+        selectedPerson.setAge(Integer.parseInt(ageField.getText()));
+        selectedPerson.setPhone(Long.parseLong(phoneField.getText()));
+        selectedPerson.setPincode(Integer.parseInt(pincodeField.getText()));
+        JOptionPane.showMessageDialog(null, "Patient updated successfully");
+        populatePatientTable();
+    }//GEN-LAST:event_saveBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

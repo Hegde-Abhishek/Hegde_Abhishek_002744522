@@ -27,6 +27,7 @@ public class Medical_resource extends javax.swing.JFrame {
     DoctorDirectory docDir;
     EncounterHistory encounterDir;
     VitalSignsHistory vitalSignsDir;
+    int loginId;
     public Medical_resource() {
         initComponents();
         personDir = new PersonDirectory();
@@ -351,30 +352,94 @@ public class Medical_resource extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        String username = this.usernameField.getText().trim();
-        String pswd = this.jPasswordField1.getText().trim();
-        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir);
-        Doctor_view docView = new Doctor_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir);
-        Patient_view patientView = new Patient_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir);
-        
-        if(username.equals("admin") && pswd.equals("admin")){
-            docView.roleOf("admin");
+//        String username = this.usernameField.getText().trim();
+//        String pswd = this.jPasswordField1.getText().trim();
+//        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir);
+//        Doctor_view docView = new Doctor_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir);
+//        Patient_view patientView = new Patient_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir);
+//        
+//        if(username.equals("admin") && pswd.equals("admin")){
+//            docView.roleOf("admin");
+//            adminView.setVisible(true);
+//            setVisible(false);
+//        }
+//        else if(username.equals("doctor") && pswd.equals("doctor")){
+//            docView.roleOf("doctor");
+//            docView.setVisible(true);
+//            setVisible(false);
+//        }
+//        else if(username.equals("patient") && pswd.equals("patient")){
+////            patientView.roleOf("doctor");
+//            patientView.setVisible(true);
+//            setVisible(false);
+//        }
+//        else {
+//            JOptionPane.showMessageDialog(null, "Enter valid credentials");
+//        }
+        int userId = Integer.parseInt(usernameField.getText());
+        String password = new String(jPasswordField1.getPassword());
+        String role = jComboBox1.getSelectedItem().toString();
+        if (role.equals("Patient") || role.equals("Doctor")) {
+            if (role.equals("Patient")) {
+                Person p = personDir.login(userId, password);
+                System.out.println("Person ArrayList : " + p);
+                if (p != null) {
+                    loginId = userId;
+//                    Person s = personDir.find(userId);
+//                    int id = s.getPersonId();
+//        if (id > 0) {
+            Patient_view patientMenu = new Patient_view(loginId,personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir);
+//            patientMenu.assignRole(role);
+            patientMenu.setVisible(true);
+            setVisible(false);
+        } else {
+                    JOptionPane.showMessageDialog(null, "User not found");
+                }
+            } else if(role.equals("Doctor")){
+                Person p = personDir.login(userId, password);
+                System.out.println("Person ArrayList : " + p);
+                if (p != null) {
+                    loginId = userId;
+                    Doctor_view docMenu = new Doctor_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
+//                  docMenu.assignRole(role);
+                    docMenu.setVisible(true);
+                    setVisible(false);
+            } else {
+                    JOptionPane.showMessageDialog(null, "User not found");
+                }
+            }
+        } else if(role.equals("System Admin") && userId == 1 && password.equals("admin")){
+//            MainJFrame mainJFrame = new MainJFrame(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory, CityDirectory, CommunityDirectory, HouseDirectory);
+//            DoctorMenu doctorMenu = new DoctorMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
+//            PatientMenu patientMenu = new PatientMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
+//            HospitalMenu hospitalMenu = new HospitalMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
+//            CommunityMenu communityMenu = new CommunityMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory, CityDirectory, CommunityDirectory, HouseDirectory);
+//            PersonMenu personMenu = new PersonMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
+            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,loginId);
             adminView.setVisible(true);
+//            doctorMenu.assignRole(role);
+//            patientMenu.assignRole(role);
+//            hospitalMenu.assignRole(role);
+//            communityMenu.assignRole(role);
+//            personMenu.assignRole(role);
             setVisible(false);
         }
-        else if(username.equals("doctor") && pswd.equals("doctor")){
-            docView.roleOf("doctor");
-            docView.setVisible(true);
-            setVisible(false);
-        }
-        else if(username.equals("patient") && pswd.equals("patient")){
-//            patientView.roleOf("doctor");
-            patientView.setVisible(true);
-            setVisible(false);
-        }
+//        else if(role.equals("Community Admin") && userId == 201 && password.equals("123")) {
+//            CommunityMenu communityMenu = new CommunityMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory, CityDirectory, CommunityDirectory, HouseDirectory);
+//            communityMenu.assignRole(role);
+//            communityMenu.setVisible(true);
+//            setVisible(false);
+//        }
+//        else if(role.equals("Hospital Admin") && userId == 501 && password.equals("123")) {
+//            HospitalMenu hospitalMenu = new HospitalMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
+//            hospitalMenu.assignRole(role);
+//            hospitalMenu.setVisible(true);
+//            setVisible(false);
+//        }
         else {
-            JOptionPane.showMessageDialog(null, "Enter valid credentials");
+            JOptionPane.showMessageDialog(null, "Invalid Account!");
         }
+        
     }//GEN-LAST:event_loginActionPerformed
 
     private void ageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageFieldActionPerformed

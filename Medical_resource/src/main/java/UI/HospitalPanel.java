@@ -277,10 +277,10 @@ public class HospitalPanel extends javax.swing.JPanel {
         
         int selectedRowIndex = hospitalTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) hospitalTable.getModel();
-        Person selectedPerson = (Person) model.getValueAt(selectedRowIndex, 0);
-        selectedPerson.setName(nameField.getText());
-        selectedPerson.setPincode(Integer.parseInt(pincodeField.getText()));
-        JOptionPane.showMessageDialog(null, "Person updated successfully");
+        Hospital selectedH = (Hospital) model.getValueAt(selectedRowIndex, 0);
+        selectedH.setHospitalName(nameField.getText());
+        selectedH.setPincode(Integer.parseInt(pincodeField.getText()));
+        JOptionPane.showMessageDialog(null, "Hospital updated successfully");
         populateHospitalTable();
     }//GEN-LAST:event_updateSaveBtnActionPerformed
 
@@ -296,7 +296,7 @@ public class HospitalPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) hospitalTable.getModel();
         Hospital selectedPerson = (Hospital) model.getValueAt(selectedRowIndex, 0);
         hospitalDir.deletePerson(selectedPerson);
-        JOptionPane.showMessageDialog(null, "Person record deleted");
+        JOptionPane.showMessageDialog(null, "Hospital record deleted");
         populateHospitalTable();
     }//GEN-LAST:event_jButton2ActionPerformed
 

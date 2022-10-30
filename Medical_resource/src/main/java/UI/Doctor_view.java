@@ -26,7 +26,8 @@ public class Doctor_view extends javax.swing.JFrame {
     DoctorDirectory docDir;
     EncounterHistory encounterDir;
     VitalSignsHistory vitalSignsDir;
-    public Doctor_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir,VitalSignsHistory vitalSignsDir) {
+    int loginId;
+    public Doctor_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir,VitalSignsHistory vitalSignsDir, int loginId) {
         initComponents();
         this.personDir = personDir;
         this.patientDir = patientDir;
@@ -34,6 +35,7 @@ public class Doctor_view extends javax.swing.JFrame {
         this.docDir = docDir;
         this.encounterDir = encounterDir;
         this.vitalSignsDir = vitalSignsDir;
+        this.loginId = loginId;
     }
 
     /**
@@ -161,7 +163,7 @@ public class Doctor_view extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
 
         // TODO add your handling code here:
-        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir);
+        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,loginId);
         adminView.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_backBtnActionPerformed

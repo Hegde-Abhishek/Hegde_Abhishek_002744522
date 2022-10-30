@@ -19,6 +19,7 @@ public class Person {
     private int pincode;
     private Community community;
     private House residence;
+    private String password;
     private static int count=0;
     private boolean isPatient = false;
 
@@ -36,6 +37,14 @@ public class Person {
 
     public void setPersonId(int personId) {
         this.personId = personId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getAge() {
