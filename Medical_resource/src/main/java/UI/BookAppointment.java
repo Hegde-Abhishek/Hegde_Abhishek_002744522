@@ -10,7 +10,9 @@ import Model.EncounterHistory;
 import Model.Hospital;
 import Model.HospitalDirectory;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -47,7 +49,7 @@ public class BookAppointment extends javax.swing.JPanel {
         hosTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         docTable = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        searchTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -81,6 +83,12 @@ public class BookAppointment extends javax.swing.JPanel {
             }
         ));
         jScrollPane2.setViewportView(docTable);
+
+        searchTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchTxtKeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Search :");
 
@@ -121,7 +129,7 @@ public class BookAppointment extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1)))
+                        .addComponent(searchTxt)))
                 .addGap(0, 104, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(364, 364, 364)
@@ -139,7 +147,7 @@ public class BookAppointment extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(75, 75, 75)))
                 .addComponent(jButton1)
@@ -173,6 +181,21 @@ public class BookAppointment extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void searchTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTxtKeyReleased
+        // TODO add your handling code here:
+        String search = searchTxt.getText();
+        
+        DefaultTableModel modelD = (DefaultTableModel) hosTable.getModel();
+        TableRowSorter<DefaultTableModel> searchDoc = new TableRowSorter<>(modelD);
+        hosTable.setRowSorter(searchDoc);
+        searchDoc.setRowFilter(RowFilter.regexFilter(search));
+        
+        DefaultTableModel model = (DefaultTableModel) hosTable.getModel();
+        TableRowSorter<DefaultTableModel> searchHos = new TableRowSorter<>(model);
+        hosTable.setRowSorter(searchHos);
+        searchHos.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_searchTxtKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable docTable;
@@ -186,7 +209,7 @@ public class BookAppointment extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField searchTxt;
     // End of variables declaration//GEN-END:variables
 
     private void populateHosTable() {

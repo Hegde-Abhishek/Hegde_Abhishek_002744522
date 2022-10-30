@@ -29,4 +29,8 @@ public class PatientDirectory {
         patient.setPatientId(patient.person.getPersonId());
         patientDir.add(patient);
     }
+
+    public void deletePerson(Patient selectedPerson) {
+        patientDir.remove(selectedPerson);
+    }
 }

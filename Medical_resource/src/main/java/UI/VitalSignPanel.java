@@ -81,6 +81,11 @@ public class VitalSignPanel extends javax.swing.JPanel {
         jLabel5.setText("Temperature (deg F)");
 
         saveBtn1.setText("Save");
+        saveBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtn1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout updateVitalSignsPanelLayout = new javax.swing.GroupLayout(updateVitalSignsPanel);
         updateVitalSignsPanel.setLayout(updateVitalSignsPanelLayout);
@@ -175,6 +180,10 @@ public class VitalSignPanel extends javax.swing.JPanel {
         }
         updateVitalSignsPanel.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void saveBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveBtn1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

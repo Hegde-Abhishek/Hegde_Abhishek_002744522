@@ -33,6 +33,7 @@ public class EncounterForAdmin extends javax.swing.JPanel {
         this.encounterDir = encounterDir;
         addingPanel.setVisible(false);
         populateTables();
+        populateEncounterTable();
     }
 
     /**

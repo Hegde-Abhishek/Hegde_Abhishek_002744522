@@ -11,6 +11,7 @@ import Model.Person;
 import Model.PersonDirectory;
 import javax.swing.JOptionPane;
 import Model.PatientDirectory;
+import Model.VitalSignsHistory;
 /**
  *
  * @author Abhishek
@@ -25,6 +26,7 @@ public class Medical_resource extends javax.swing.JFrame {
     HospitalDirectory hospitalDir;
     DoctorDirectory docDir;
     EncounterHistory encounterDir;
+    VitalSignsHistory vitalSignsDir;
     public Medical_resource() {
         initComponents();
         personDir = new PersonDirectory();
@@ -32,16 +34,18 @@ public class Medical_resource extends javax.swing.JFrame {
         hospitalDir = new HospitalDirectory();
         docDir = new DoctorDirectory();
         encounterDir = new EncounterHistory();
+        vitalSignsDir = new VitalSignsHistory();
         registerPanel.setVisible(false);
     }
     
-        public Medical_resource(PersonDirectory personDirectory, PatientDirectory patientDirectory, HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir) {
+        public Medical_resource(PersonDirectory personDirectory, PatientDirectory patientDirectory, HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir,VitalSignsHistory vitalSignsDir) {
         initComponents();
         this.personDir = personDirectory;
         this.patientDir = patientDirectory;
         this.hospitalDir = hospitalDir;
         this.docDir = docDir;
         this.encounterDir = encounterDir;
+        this.vitalSignsDir = vitalSignsDir;
         registerPanel.setVisible(false);
     }
 
@@ -350,8 +354,8 @@ public class Medical_resource extends javax.swing.JFrame {
         String username = this.usernameField.getText().trim();
         String pswd = this.jPasswordField1.getText().trim();
         Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir);
-        Doctor_view docView = new Doctor_view(personDir,patientDir,hospitalDir,docDir,encounterDir);
-        Patient_view patientView = new Patient_view(personDir,patientDir,hospitalDir,docDir,encounterDir);
+        Doctor_view docView = new Doctor_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir);
+        Patient_view patientView = new Patient_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir);
         
         if(username.equals("admin") && pswd.equals("admin")){
             docView.roleOf("admin");

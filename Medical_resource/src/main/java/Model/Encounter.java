@@ -86,5 +86,9 @@ public class Encounter {
         this.doctorId = doctorId;
     }
     
+    @Override
+    public String toString(){
+        return patientName;
+    }
     
 }

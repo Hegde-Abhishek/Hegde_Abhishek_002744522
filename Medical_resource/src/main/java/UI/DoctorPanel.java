@@ -18,9 +18,10 @@ public class DoctorPanel extends javax.swing.JPanel {
      * Creates new form DoctorPanel
      */
     DoctorDirectory docDir;
-    public DoctorPanel() {
+    public DoctorPanel(DoctorDirectory docDir) {
         initComponents();
         detPanel.setVisible(false);
+        this.docDir = docDir;
         populateDocTable();
     }
 

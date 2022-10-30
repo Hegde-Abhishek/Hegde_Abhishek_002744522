@@ -9,6 +9,7 @@ import Model.EncounterHistory;
 import Model.HospitalDirectory;
 import Model.PatientDirectory;
 import Model.PersonDirectory;
+import Model.VitalSignsHistory;
 
 /**
  *
@@ -24,13 +25,15 @@ public class Patient_view extends javax.swing.JFrame {
     HospitalDirectory hospitalDir;
     DoctorDirectory docDir;
     EncounterHistory encounterDir;
-    public Patient_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir) {
+    VitalSignsHistory vitalSignsDir;
+    public Patient_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir, VitalSignsHistory vitalSignsDir) {
         initComponents();
         this.personDir = personDir;
         this.patientDir = patientDir;
         this.hospitalDir = hospitalDir;
         this.docDir = docDir;
         this.encounterDir = encounterDir;
+        this.vitalSignsDir = vitalSignsDir;
     }
 
     /**
@@ -47,6 +50,7 @@ public class Patient_view extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         rightPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,6 +69,14 @@ public class Patient_view extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton4.setText("Logout");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -73,7 +85,8 @@ public class Patient_view extends javax.swing.JFrame {
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addGap(0, 13, Short.MAX_VALUE))
         );
         leftPanelLayout.setVerticalGroup(
@@ -85,7 +98,9 @@ public class Patient_view extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(387, Short.MAX_VALUE))
+                .addGap(181, 181, 181)
+                .addComponent(jButton4)
+                .addContainerGap(183, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(leftPanel);
@@ -122,6 +137,13 @@ public class Patient_view extends javax.swing.JFrame {
         BookAppointment book = new BookAppointment(hospitalDir,docDir,encounterDir);
         jSplitPane1.setRightComponent(book);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Medical_resource medRes = new Medical_resource(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir);
+        medRes.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,6 +184,7 @@ public class Patient_view extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel rightPanel;

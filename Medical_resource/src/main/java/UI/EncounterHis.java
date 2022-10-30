@@ -23,10 +23,12 @@ public class EncounterHis extends javax.swing.JPanel {
      */
     VitalSignsHistory vitalSignsDir;
     EncounterHistory encounterDir;
-    public EncounterHis(EncounterHistory encounterDir) {
+    public EncounterHis(EncounterHistory encounterDir,VitalSignsHistory vitalSignsDir) {
         initComponents();
         this.encounterDir = encounterDir;
+        this.vitalSignsDir = vitalSignsDir;
         updateEncPanel.setVisible(false);
+        createVitalSignsPanel.setVisible(false);
         populateEncounterTable();
     }
 
