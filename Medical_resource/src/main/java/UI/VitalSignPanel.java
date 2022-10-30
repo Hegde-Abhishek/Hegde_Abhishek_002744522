@@ -4,20 +4,25 @@
  */
 package UI;
 
+import Model.VitalSigns;
+import Model.VitalSignsHistory;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Abhishek
  */
-public class VitalSigns extends javax.swing.JPanel {
+public class VitalSignPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form VitalSigns
      */
-    public VitalSigns() {
+    VitalSignsHistory vitalSignsDir;
+    public VitalSignPanel() {
         initComponents();
         updateVitalSignsPanel.setVisible(false);
+        populateVitalSigns();
     }
 
     /**
@@ -42,8 +47,6 @@ public class VitalSigns extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         saveBtn1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
@@ -57,7 +60,7 @@ public class VitalSigns extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Patient Name", "Blood Pressure", "Breathing rate", "Pulse", "Temp (F)", "one more"
+                "Patient Name", "Blood Pressure", "Heart rate", "Temp (F)", "Breathing rate", "Encounter Id"
             }
         ));
         jScrollPane1.setViewportView(vitalSignsTable);
@@ -73,11 +76,9 @@ public class VitalSigns extends javax.swing.JPanel {
 
         jLabel3.setText("Breathing rate (per min)");
 
-        jLabel4.setText("Pulse (beats per min)");
+        jLabel4.setText("Heart Rate :");
 
         jLabel5.setText("Temperature (deg F)");
-
-        jLabel6.setText("Some_connecting attribute");
 
         saveBtn1.setText("Save");
 
@@ -89,7 +90,7 @@ public class VitalSigns extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(updateVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(saveBtn1)
-                    .addGroup(updateVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(updateVitalSignsPanelLayout.createSequentialGroup()
                         .addGroup(updateVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(updateVitalSignsPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -107,10 +108,7 @@ public class VitalSigns extends javax.swing.JPanel {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(updateVitalSignsPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(3, 3, 3)))
                 .addContainerGap(560, Short.MAX_VALUE))
         );
         updateVitalSignsPanelLayout.setVerticalGroup(
@@ -132,11 +130,7 @@ public class VitalSigns extends javax.swing.JPanel {
                 .addGroup(updateVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(updateVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(saveBtn1)
                 .addContainerGap())
         );
@@ -190,15 +184,30 @@ public class VitalSigns extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JButton saveBtn1;
     private javax.swing.JPanel updateVitalSignsPanel;
     private javax.swing.JTable vitalSignsTable;
     // End of variables declaration//GEN-END:variables
+
+    private void populateVitalSigns() {
+        DefaultTableModel model = (DefaultTableModel) vitalSignsTable.getModel();
+        model.setRowCount(0);
+        
+        for(VitalSigns v : vitalSignsDir.getVitalSignsDir()) {
+            Object[] row = new Object[6];
+            row[0]= v;
+            row[1]= v.getBloodPressure();
+            row[2]= v.getHeartRate();
+            row[3]= v.getBodyTemp();
+            row[4]= v.getBreathingRate();
+            row[5]= v.getEncounterId();
+            
+            model.addRow(row);
+        }
+    }
 }

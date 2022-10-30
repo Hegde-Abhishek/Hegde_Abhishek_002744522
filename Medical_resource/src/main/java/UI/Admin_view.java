@@ -230,7 +230,7 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new Doctor_view(personDir,patientDir).setVisible(true);
+        new Doctor_view(personDir,patientDir,hospitalDir,docDir,encounterDir).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void personBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personBtnActionPerformed
@@ -259,7 +259,7 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
-        Medical_resource medRes = new Medical_resource(personDir,patientDir,hospitalDir);
+        Medical_resource medRes = new Medical_resource(personDir,patientDir,hospitalDir,docDir,encounterDir);
         medRes.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_logoutBtnActionPerformed

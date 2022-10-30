@@ -24,10 +24,13 @@ public class Doctor_view extends javax.swing.JFrame {
     HospitalDirectory hospitalDir;
     DoctorDirectory docDir;
     EncounterHistory encounterDir;
-    public Doctor_view(PersonDirectory personDir,PatientDirectory patientDir) {
+    public Doctor_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir,DoctorDirectory docDir,EncounterHistory encounterDir) {
         initComponents();
         this.personDir = personDir;
         this.patientDir = patientDir;
+        this.hospitalDir = hospitalDir;
+        this.docDir = docDir;
+        this.encounterDir = encounterDir;
     }
 
     /**
@@ -162,19 +165,19 @@ public class Doctor_view extends javax.swing.JFrame {
 
     private void encounterHisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encounterHisBtnActionPerformed
         // TODO add your handling code here:
-        EncounterHis encHistory = new EncounterHis();
+        EncounterHis encHistory = new EncounterHis(encounterDir);
         jSplitPane1.setRightComponent(encHistory);
     }//GEN-LAST:event_encounterHisBtnActionPerformed
 
     private void vitalSignsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vitalSignsBtnActionPerformed
         // TODO add your handling code here:
-        VitalSigns vitalSigns = new VitalSigns();
+        VitalSignPanel vitalSigns = new VitalSignPanel();
         jSplitPane1.setRightComponent(vitalSigns);
     }//GEN-LAST:event_vitalSignsBtnActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
-        Medical_resource medRes = new Medical_resource(personDir,patientDir,hospitalDir);
+        Medical_resource medRes = new Medical_resource(personDir,patientDir,hospitalDir,docDir,encounterDir);
         medRes.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_logoutBtnActionPerformed

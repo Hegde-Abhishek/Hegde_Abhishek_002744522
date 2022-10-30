@@ -4,7 +4,13 @@
  */
 package UI;
 
+import Model.Encounter;
+import Model.EncounterHistory;
+import Model.Person;
+import Model.VitalSigns;
+import Model.VitalSignsHistory;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,9 +21,13 @@ public class EncounterHis extends javax.swing.JPanel {
     /**
      * Creates new form Encounter_History
      */
-    public EncounterHis() {
+    VitalSignsHistory vitalSignsDir;
+    EncounterHistory encounterDir;
+    public EncounterHis(EncounterHistory encounterDir) {
         initComponents();
+        this.encounterDir = encounterDir;
         updateEncPanel.setVisible(false);
+        populateEncounterTable();
     }
 
     /**
@@ -43,6 +53,17 @@ public class EncounterHis extends javax.swing.JPanel {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         bpLabel1 = new javax.swing.JLabel();
         bpField1 = new javax.swing.JTextField();
+        createVitalSignsPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        bloodPressure = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        heartRateField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        temperature = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        breathingRate = new javax.swing.JTextField();
+        saveBtn1 = new javax.swing.JButton();
+        createVitalSignsBtn = new javax.swing.JButton();
 
         header.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         header.setText("Encounter History");
@@ -105,7 +126,7 @@ public class EncounterHis extends javax.swing.JPanel {
                             .addComponent(bpLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(bpField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(587, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         updateEncPanelLayout.setVerticalGroup(
             updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,24 +147,108 @@ public class EncounterHis extends javax.swing.JPanel {
                 .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bpLabel1)
                     .addComponent(bpField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveBtn)
                 .addGap(50, 50, 50))
         );
+
+        jLabel2.setText("Blood Pressure :");
+
+        jLabel3.setText("Heart Rate :");
+
+        jLabel4.setText("Temperature (deg F) :");
+
+        jLabel5.setText("Breathing rate :");
+
+        saveBtn1.setText("Save");
+        saveBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtn1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout createVitalSignsPanelLayout = new javax.swing.GroupLayout(createVitalSignsPanel);
+        createVitalSignsPanel.setLayout(createVitalSignsPanelLayout);
+        createVitalSignsPanelLayout.setHorizontalGroup(
+            createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(saveBtn1)
+                    .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
+                        .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(59, 59, 59)
+                                .addComponent(bloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(heartRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(temperature, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(breathingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(3, 3, 3)))
+                .addContainerGap(236, Short.MAX_VALUE))
+        );
+        createVitalSignsPanelLayout.setVerticalGroup(
+            createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(bloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(heartRateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(temperature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(breathingRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(saveBtn1)
+                .addContainerGap())
+        );
+
+        createVitalSignsBtn.setText("Create Vital Signs");
+        createVitalSignsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createVitalSignsBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(updateEncPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(297, 297, 297)
                 .addComponent(header)
                 .addContainerGap(302, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(updateBtn)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createVitalSignsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(createVitalSignsBtn)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(updateBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateEncPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
@@ -154,9 +259,17 @@ public class EncounterHis extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(updateBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(updateEncPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(updateBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateEncPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(createVitalSignsBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(createVitalSignsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -171,20 +284,84 @@ public class EncounterHis extends javax.swing.JPanel {
         updateEncPanel.setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
+    private void createVitalSignsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createVitalSignsBtnActionPerformed
+        // TODO add your handling code here:
+        createVitalSignsPanel.setVisible(true);
+    }//GEN-LAST:event_createVitalSignsBtnActionPerformed
+
+    private void saveBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtn1ActionPerformed
+        // TODO add your handling code here:
+        int selectedPatient = encHisTable.getSelectedRow();
+        if (selectedPatient < 0 || selectedPatient>1) {
+            JOptionPane.showMessageDialog(null, "Please select an encounter first!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) encHisTable.getModel();
+        Encounter selectedPerson = (Encounter) model.getValueAt(selectedPatient, 0);
+        String name = selectedPerson.getPatientName();
+        int patientId = selectedPerson.getPatientId();
+        String docName = selectedPerson.getDoctorName();
+        int doctorId = selectedPerson.getDoctorId();
+        int encounterId = selectedPerson.getEncounterId();
+        int bp = Integer.parseInt(bloodPressure.getText());
+        int heartRate = Integer.parseInt(this.heartRateField.getText());
+        double bodyTemp = Double.parseDouble(temperature.getText());
+        int breathRate = Integer.parseInt(breathingRate.getText());
+        
+        VitalSigns v = vitalSignsDir.addVitalSign();
+        v.setPatientName(name);
+        v.setPatientId(patientId);
+        v.setDoctorId(doctorId);
+        v.setEncounterId(encounterId);
+        v.setBloodPressure(bp);
+        v.setHeartRate(heartRate);
+        v.setBodyTemp(bodyTemp);
+        v.setBreathingRate(breathRate);
+        JOptionPane.showMessageDialog(null, "Vital Signs added");
+    }//GEN-LAST:event_saveBtn1ActionPerformed
+
+    private void populateEncounterTable() {
+        DefaultTableModel model = (DefaultTableModel) encHisTable.getModel();
+        model.setRowCount(0);
+        
+        for(Encounter e : encounterDir.getEncounters()) {
+            Object[] row = new Object[6];
+            row[0]= e;
+            row[1]= e.getPatientId();
+            row[2]= e.getDoctorName();
+            row[3]= e.getDoctorId();
+            row[4]= e.getDate();
+            row[5]= e.getIllness();
+            
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bloodPressure;
     private javax.swing.JTextField bpField;
     private javax.swing.JTextField bpField1;
     private javax.swing.JLabel bpLabel;
     private javax.swing.JLabel bpLabel1;
+    private javax.swing.JTextField breathingRate;
+    private javax.swing.JButton createVitalSignsBtn;
+    private javax.swing.JPanel createVitalSignsPanel;
     private javax.swing.JTable encHisTable;
     private javax.swing.JTextField encIdField;
     private javax.swing.JLabel encIdLabel;
     private javax.swing.JLabel header;
+    private javax.swing.JTextField heartRateField;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JButton saveBtn1;
+    private javax.swing.JTextField temperature;
     private javax.swing.JButton updateBtn;
     private javax.swing.JPanel updateEncPanel;
     // End of variables declaration//GEN-END:variables

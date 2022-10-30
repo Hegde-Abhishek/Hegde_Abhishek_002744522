@@ -4,6 +4,10 @@
  */
 package UI;
 
+import Model.Doctor;
+import Model.DoctorDirectory;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Abhishek
@@ -13,9 +17,11 @@ public class DoctorPanel extends javax.swing.JPanel {
     /**
      * Creates new form DoctorPanel
      */
+    DoctorDirectory docDir;
     public DoctorPanel() {
         initComponents();
         detPanel.setVisible(false);
+        populateDocTable();
     }
 
     /**
@@ -29,7 +35,7 @@ public class DoctorPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        docTable = new javax.swing.JTable();
         addDoctorBtn = new javax.swing.JButton();
         detPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,7 +56,7 @@ public class DoctorPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Doctor Directory");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        docTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -61,7 +67,7 @@ public class DoctorPanel extends javax.swing.JPanel {
                 "Name", "Doctor Id", "Age", "Gender", "Hospital Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(docTable);
 
         addDoctorBtn.setText("Add a doctor");
         addDoctorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +241,7 @@ public class DoctorPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDoctorBtn;
     private javax.swing.JPanel detPanel;
+    private javax.swing.JTable docTable;
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JLabel gender;
     private javax.swing.JPanel genderPanel;
@@ -243,7 +250,6 @@ public class DoctorPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
@@ -253,4 +259,20 @@ public class DoctorPanel extends javax.swing.JPanel {
     private javax.swing.JButton updateDoctorBtn;
     private javax.swing.JButton updateDoctorBtn1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateDocTable() {
+        DefaultTableModel model = (DefaultTableModel) docTable.getModel();
+        model.setRowCount(0);
+        
+        for(Doctor d : docDir.getDoctorDir()) {
+            Object[] row = new Object[5];
+            row[0]= d;
+            row[1]= d.getDoctorId();
+            row[2]= d.getAge();
+            row[3]= d.getGender();
+            row[4]= d.getHospitalName();
+            
+            model.addRow(row);
+        }
+    }
 }

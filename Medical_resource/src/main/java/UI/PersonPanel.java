@@ -89,6 +89,7 @@ public class PersonPanel extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        hospitalField = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Person Directory");
@@ -316,29 +317,31 @@ public class PersonPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(addPersonBtn)
-                        .addGap(44, 44, 44)
-                        .addComponent(updatePersonBtn)
-                        .addGap(44, 44, 44)
-                        .addComponent(deletePersonBtn)
-                        .addGap(44, 44, 44)
-                        .addComponent(addAsPatientBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(addAsDoctortBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel1)))
-                .addGap(40, 40, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(detailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(143, 143, 143))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(hospitalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addComponent(addPersonBtn)
+                            .addGap(44, 44, 44)
+                            .addComponent(updatePersonBtn)
+                            .addGap(44, 44, 44)
+                            .addComponent(deletePersonBtn)
+                            .addGap(44, 44, 44)
+                            .addComponent(addAsPatientBtn)
+                            .addGap(18, 18, 18)
+                            .addComponent(addAsDoctortBtn))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(79, 79, 79)
+                            .addComponent(jLabel1))))
+                .addGap(40, 40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,8 +359,14 @@ public class PersonPanel extends javax.swing.JPanel {
                             .addComponent(deletePersonBtn)
                             .addComponent(addAsPatientBtn)
                             .addComponent(addAsDoctortBtn))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(detailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(detailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(hospitalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -515,7 +524,9 @@ public class PersonPanel extends javax.swing.JPanel {
             addDoctor=this.personDir.getPersonDir().get(selcetedPerson);
             int uniqueID=addDoctor.getPersonId();
             Doctor doc=new Doctor (addDoctor);
+            doc.setHospitalName(hospitalField.getText());
             docDir.addDoctor(doc);
+            JOptionPane.showMessageDialog(null, "Person added as doctor");
             populatePersonTable();
         }
     }//GEN-LAST:event_addAsDoctortBtnActionPerformed
@@ -555,6 +566,7 @@ public class PersonPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JLabel gender;
     private javax.swing.JPanel genderPanel;
+    private javax.swing.JTextField hospitalField;
     private javax.swing.JLabel house;
     private javax.swing.JTextField houseField;
     private javax.swing.JComboBox<String> jComboBox1;
