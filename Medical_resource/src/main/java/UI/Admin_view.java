@@ -28,15 +28,18 @@ public class Admin_view extends javax.swing.JFrame {
     VitalSignsHistory vitalSignsDir;
     City city;
     int loginId;
-    public Admin_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir, DoctorDirectory docDir,EncounterHistory encounterDir, int loginId) {
+    public Admin_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir, DoctorDirectory docDir,EncounterHistory encounterDir,VitalSignsHistory vitalSignsDir, int loginId) {
         initComponents();
         this.personDir = personDir;
         this.patientDir = patientDir;
         this.hospitalDir = hospitalDir;
         this.docDir = docDir;
         this.encounterDir = encounterDir;
+        this.vitalSignsDir = vitalSignsDir;
         this.loginId = loginId;
         this.city = new City("Boston");
+        comAdmin.setVisible(false);
+        hosAdmin.setVisible(false);
     }
 
     /**
@@ -51,7 +54,6 @@ public class Admin_view extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         personBtn = new javax.swing.JButton();
         patientBtn = new javax.swing.JButton();
         communityBtn = new javax.swing.JButton();
@@ -61,6 +63,8 @@ public class Admin_view extends javax.swing.JFrame {
         doctorDir = new javax.swing.JButton();
         encounterBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        comAdmin = new javax.swing.JLabel();
+        hosAdmin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,15 +72,6 @@ public class Admin_view extends javax.swing.JFrame {
         jLabel1.setText("System Admin");
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
-
-        jButton1.setBackground(new java.awt.Color(204, 255, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Doctor");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         personBtn.setBackground(new java.awt.Color(204, 255, 204));
         personBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -154,19 +149,18 @@ public class Admin_view extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(communityBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(personBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(patientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(doctorDir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(hospitalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(houseBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(encounterBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(communityBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(personBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(patientBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(houseBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(hospitalBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(doctorDir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(encounterBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,19 +169,17 @@ public class Admin_view extends javax.swing.JFrame {
                 .addComponent(communityBtn)
                 .addGap(18, 18, 18)
                 .addComponent(houseBtn)
-                .addGap(61, 61, 61)
+                .addGap(18, 18, 18)
+                .addComponent(hospitalBtn)
+                .addGap(20, 20, 20)
                 .addComponent(personBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
                 .addComponent(patientBtn)
-                .addGap(13, 13, 13)
-                .addComponent(doctorDir)
-                .addGap(34, 34, 34)
-                .addComponent(hospitalBtn)
                 .addGap(18, 18, 18)
+                .addComponent(doctorDir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(encounterBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(35, 35, 35))
         );
@@ -198,45 +190,53 @@ public class Admin_view extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 847, Short.MAX_VALUE)
+            .addGap(0, 832, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 562, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
 
         jSplitPane2.setRightComponent(jPanel2);
+
+        comAdmin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        comAdmin.setText("Community Admin");
+
+        hosAdmin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        hosAdmin.setText("Hospital Admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(445, 445, 445)
+                .addGap(251, 251, 251)
+                .addComponent(hosAdmin)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(comAdmin)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jSplitPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(hosAdmin)
+                    .addComponent(comAdmin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSplitPane2))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        new Doctor_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void personBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personBtnActionPerformed
         // TODO add your handling code here:
-        PersonPanel personPanel = new PersonPanel(personDir, patientDir,docDir);
+        PersonPanel personPanel = new PersonPanel(personDir, patientDir,docDir,city);
         jSplitPane2.setRightComponent(personPanel);
     }//GEN-LAST:event_personBtnActionPerformed
 
@@ -319,12 +319,13 @@ public class Admin_view extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel comAdmin;
     private javax.swing.JButton communityBtn;
     private javax.swing.JButton doctorDir;
     private javax.swing.JButton encounterBtn;
+    private javax.swing.JLabel hosAdmin;
     private javax.swing.JButton hospitalBtn;
     private javax.swing.JButton houseBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -333,4 +334,19 @@ public class Admin_view extends javax.swing.JFrame {
     private javax.swing.JButton patientBtn;
     private javax.swing.JButton personBtn;
     // End of variables declaration//GEN-END:variables
+
+    void assignRole(String role) {
+        if(role.equals("Hospital Admin")){
+           communityBtn.setVisible(false);
+           houseBtn.setVisible(false);
+           personBtn.setVisible(false);
+           hosAdmin.setVisible(true);
+           jLabel1.setVisible(false);
+        } else if(role.equals("Community admin")){
+            communityBtn.setVisible(true);
+           houseBtn.setVisible(true);
+           personBtn.setVisible(true);
+           comAdmin.setVisible(true);
+        }
+    }
 }

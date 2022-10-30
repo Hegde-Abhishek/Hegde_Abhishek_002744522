@@ -19,9 +19,12 @@ public class MyProfilePanel extends javax.swing.JPanel {
      */
     PersonDirectory personDir;
     PatientDirectory patientDir;
-    public MyProfilePanel(PatientDirectory patientDir) {
+    int loginId;
+    public MyProfilePanel(PatientDirectory patientDir, int loginId) {
         initComponents();
         this.patientDir = patientDir;
+        this.loginId = loginId;
+        populateFields();
     }
 
     /**
@@ -141,8 +144,8 @@ public class MyProfilePanel extends javax.swing.JPanel {
 
     private void nameFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFActionPerformed
         // TODO add your handling code here:
-        
-//        nameF.setText("");
+//        PersonDirectory person = personDir.find(loginId).getName();
+        nameF.setText(personDir.find(loginId).getName());
     }//GEN-LAST:event_nameFActionPerformed
 
 
@@ -160,4 +163,9 @@ public class MyProfilePanel extends javax.swing.JPanel {
     private javax.swing.JTextField phoneF1;
     private javax.swing.JTextField phoneF2;
     // End of variables declaration//GEN-END:variables
+
+    private void populateFields() {
+                nameF.setText(personDir.find(loginId).getName());
+
+    }
 }

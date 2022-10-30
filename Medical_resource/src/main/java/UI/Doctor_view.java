@@ -163,7 +163,7 @@ public class Doctor_view extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
 
         // TODO add your handling code here:
-        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,loginId);
+        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
         adminView.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_backBtnActionPerformed
@@ -176,7 +176,7 @@ public class Doctor_view extends javax.swing.JFrame {
 
     private void vitalSignsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vitalSignsBtnActionPerformed
         // TODO add your handling code here:
-        VitalSignPanel vitalSigns = new VitalSignPanel();
+        VitalSignPanel vitalSigns = new VitalSignPanel(vitalSignsDir);
         jSplitPane1.setRightComponent(vitalSigns);
     }//GEN-LAST:event_vitalSignsBtnActionPerformed
 

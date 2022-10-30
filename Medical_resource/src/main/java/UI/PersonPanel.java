@@ -34,18 +34,20 @@ public class PersonPanel extends javax.swing.JPanel {
     PatientDirectory patientDir;
     DoctorDirectory docDir;
     Person addPatient,addDoctor;
-//    City cityName;
+    City city;
 //    Community communityName;
     
-    public PersonPanel(PersonDirectory personDir, PatientDirectory patientDir,DoctorDirectory docDir) {
+    public PersonPanel(PersonDirectory personDir, PatientDirectory patientDir,DoctorDirectory docDir,City city) {
         initComponents();
         detailPanel.setVisible(false);
         this.personDir = personDir;
         this.patientDir = patientDir;
         this.docDir = docDir;
+        this.city = city;
 //        this.communityName = communityName;
 //        this.cityName = cityName;
         populatePersonTable();
+        loadCommunities();
     }
 
     /**
@@ -62,13 +64,11 @@ public class PersonPanel extends javax.swing.JPanel {
         personTable = new javax.swing.JTable();
         addPersonBtn = new javax.swing.JButton();
         detailPanel = new javax.swing.JPanel();
-        city = new javax.swing.JLabel();
+        cityLabel = new javax.swing.JLabel();
         phone = new javax.swing.JLabel();
-        community = new javax.swing.JLabel();
         ageField = new javax.swing.JTextField();
         pincode = new javax.swing.JLabel();
         name = new javax.swing.JLabel();
-        communityField = new javax.swing.JTextField();
         cityField = new javax.swing.JTextField();
         pincodeField = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
@@ -82,13 +82,12 @@ public class PersonPanel extends javax.swing.JPanel {
         gender = new javax.swing.JLabel();
         maleRadioButton = new javax.swing.JRadioButton();
         femaleRadioButton = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        communityTable = new javax.swing.JTable();
         updatePersonBtn = new javax.swing.JButton();
         deletePersonBtn = new javax.swing.JButton();
         addAsPatientBtn = new javax.swing.JButton();
         addAsDoctortBtn = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         hospitalField = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
@@ -119,11 +118,9 @@ public class PersonPanel extends javax.swing.JPanel {
 
         detailPanel.setPreferredSize(new java.awt.Dimension(385, 301));
 
-        city.setText("City :");
+        cityLabel.setText("City :");
 
         phone.setText("Phone :");
-
-        community.setText("Community :");
 
         ageField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,92 +180,102 @@ public class PersonPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        communityTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Community"
+            }
+        ));
+        jScrollPane2.setViewportView(communityTable);
+
         javax.swing.GroupLayout detailPanelLayout = new javax.swing.GroupLayout(detailPanel);
         detailPanel.setLayout(detailPanelLayout);
         detailPanelLayout.setHorizontalGroup(
             detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(phone)
-                            .addComponent(city))
-                        .addGap(42, 42, 42)
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(phoneField)
-                            .addComponent(cityField)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, detailPanelLayout.createSequentialGroup()
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36))
-                            .addGroup(detailPanelLayout.createSequentialGroup()
-                                .addComponent(age)
-                                .addGap(54, 54, 54)))
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ageField, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                            .addComponent(nameField)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(community)
-                            .addComponent(house)
-                            .addComponent(pincode))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(communityField)
-                            .addComponent(password)
-                            .addComponent(pincodeField)))
-                    .addComponent(genderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveBtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(updateBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(detailPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cityLabel)
+                                    .addComponent(phone))
+                                .addGap(30, 30, 30)
+                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(phoneField)
+                                    .addComponent(cityField)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(age)
+                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ageField, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                    .addComponent(nameField)))
+                            .addComponent(genderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(detailPanelLayout.createSequentialGroup()
+                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pincode)
+                            .addComponent(house))
+                        .addGap(29, 29, 29)
+                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(password)
+                            .addComponent(pincodeField))))
+                .addGap(18, 18, 18)
+                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(saveBtn)
+                    .addComponent(updateBtn)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         detailPanelLayout.setVerticalGroup(
             detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(age)
-                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phone))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(city)
-                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(community)
-                    .addComponent(communityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(detailPanelLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(pincode))
                     .addGroup(detailPanelLayout.createSequentialGroup()
                         .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(house))
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pincodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(age))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phone))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cityLabel)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(detailPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(pincodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(detailPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(house)
+                        .addGap(18, 18, 18)
+                        .addComponent(pincode)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(genderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, detailPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(updateBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(genderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveBtn)
-                .addGap(18, 18, 18))
+                .addGap(14, 14, 14))
         );
 
         updatePersonBtn.setText("Update a person");
@@ -299,24 +306,22 @@ public class PersonPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        hospitalField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                hospitalFieldActionPerformed(evt);
             }
         });
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(detailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175)
+                .addComponent(hospitalField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -332,20 +337,7 @@ public class PersonPanel extends javax.swing.JPanel {
                         .addComponent(addAsDoctortBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(detailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(103, 103, 103))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(221, 221, 221)
-                                .addComponent(hospitalField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(jLabel1)))
                 .addGap(40, 40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -369,11 +361,7 @@ public class PersonPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(223, 223, 223)
                         .addComponent(hospitalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126))))
+                        .addGap(126, 265, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -402,7 +390,13 @@ public class PersonPanel extends javax.swing.JPanel {
         }
         Long phone = Long.parseLong(phoneField.getText());
 //        City cityName = cityField.getText();
-//        Community communityName = communityField.getText();
+        int selectedRowIndex = communityTable.getSelectedRow();
+        if(selectedRowIndex<0) {
+            JOptionPane.showMessageDialog(null, "Please select a community");
+        }
+        DefaultTableModel model = (DefaultTableModel) communityTable.getModel();
+        Community selectedC = (Community) model.getValueAt(selectedRowIndex, 0);
+        String communityName = selectedC.getCommunityName();
         String pswd = password.getText();
         int pincode = Integer.parseInt(pincodeField.getText());
         
@@ -416,7 +410,7 @@ public class PersonPanel extends javax.swing.JPanel {
         p.setAge(age);
         p.setGender(gender);
         p.setPhone(phone);
-//        p.setResidence(house);
+        p.setCommunity(selectedC);
         p.setPincode(pincode);
         p.setPassword(pswd);
         
@@ -519,7 +513,11 @@ public class PersonPanel extends javax.swing.JPanel {
 
     private void addAsDoctortBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAsDoctortBtnActionPerformed
         // TODO add your handling code here:
-        int selcetedPerson =  personTable.getSelectedRow();
+        if(hospitalField == null){
+        JOptionPane.showMessageDialog(null, "Please enter hospital name!!", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            int selcetedPerson =  personTable.getSelectedRow();
         if (selcetedPerson < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row you want to add as doctor!!", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -531,26 +529,14 @@ public class PersonPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Person added as doctor");
             populatePersonTable();
         }
+        }
+        
     }//GEN-LAST:event_addAsDoctortBtnActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void hospitalFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalFieldActionPerformed
         // TODO add your handling code here:
-//        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-//        jComboBox1.setModel( model );
-//          JComboBox jcbo = new JComboBox();
-//        DefaultComboBoxModel model = (DefaultComboBoxModel) jComboBox1.getModel();
-//        model.removeAllElements();
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        model.removeAllElements();
-        Object item[]= new Object[1];
-        for (Community i : communities) {
-            item[0]=i.getCommunityName();
-            model.addElement(item);
-        }
-        System.out.println(Arrays.toString(item));
-        JComboBox comboBox = new JComboBox(item);
-        comboBox.setModel(model);
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        
+    }//GEN-LAST:event_hospitalFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -559,10 +545,9 @@ public class PersonPanel extends javax.swing.JPanel {
     private javax.swing.JButton addPersonBtn;
     private javax.swing.JLabel age;
     private javax.swing.JTextField ageField;
-    private javax.swing.JLabel city;
     private javax.swing.JTextField cityField;
-    private javax.swing.JLabel community;
-    private javax.swing.JTextField communityField;
+    private javax.swing.JLabel cityLabel;
+    private javax.swing.JTable communityTable;
     private javax.swing.JButton deletePersonBtn;
     private javax.swing.JPanel detailPanel;
     private javax.swing.JRadioButton femaleRadioButton;
@@ -570,9 +555,7 @@ public class PersonPanel extends javax.swing.JPanel {
     private javax.swing.JPanel genderPanel;
     private javax.swing.JTextField hospitalField;
     private javax.swing.JLabel house;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton maleRadioButton;
@@ -606,6 +589,18 @@ public class PersonPanel extends javax.swing.JPanel {
             
             model.addRow(row);
         }
+    }
+
+    private void loadCommunities() {
+        DefaultTableModel md=(DefaultTableModel) communityTable.getModel();
+       md.setRowCount(0);
+       communities=this.city.getCommunities();
+       Object row[]= new Object[1];
+            for(Community c : communities)
+            {
+                row[0]=c.getCommunityName();
+                md.addRow(row);
+            }
     }
 
 }

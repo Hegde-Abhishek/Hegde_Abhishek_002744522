@@ -19,8 +19,9 @@ public class VitalSignPanel extends javax.swing.JPanel {
      * Creates new form VitalSigns
      */
     VitalSignsHistory vitalSignsDir;
-    public VitalSignPanel() {
+    public VitalSignPanel(VitalSignsHistory vitalSignsDir) {
         initComponents();
+        this.vitalSignsDir = vitalSignsDir;
         updateVitalSignsPanel.setVisible(false);
         populateVitalSigns();
     }

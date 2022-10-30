@@ -67,6 +67,11 @@ public class Patient_view extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("My Encounters");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("Book");
@@ -154,9 +159,15 @@ public class Patient_view extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        MyProfilePanel myProfile = new MyProfilePanel(patientDir);
+        MyProfilePanel myProfile = new MyProfilePanel(patientDir,loginId);
         jSplitPane1.setRightComponent(myProfile);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        MyEncountersPanel encPanel = new MyEncountersPanel(encounterDir,vitalSignsDir,loginId);
+        jSplitPane1.setRightComponent(encPanel);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

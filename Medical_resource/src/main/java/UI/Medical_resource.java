@@ -92,7 +92,7 @@ public class Medical_resource extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Username : ");
+        jLabel1.setText("User ID : ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Password :");
@@ -283,26 +283,23 @@ public class Medical_resource extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(22, 22, 22)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(44, 44, 44))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4))
-                            .addGap(44, 44, 44)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel1))
+                                .addGap(44, 44, 44)
+                                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,15 +405,16 @@ public class Medical_resource extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "User not found");
                 }
             }
-        } else if(role.equals("System Admin") && userId == 1 && password.equals("admin")){
+        } else if(role.equals("System Admin") && userId == 100 && password.equals("admin")){
 //            MainJFrame mainJFrame = new MainJFrame(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory, CityDirectory, CommunityDirectory, HouseDirectory);
 //            DoctorMenu doctorMenu = new DoctorMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
 //            PatientMenu patientMenu = new PatientMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
 //            HospitalMenu hospitalMenu = new HospitalMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
 //            CommunityMenu communityMenu = new CommunityMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory, CityDirectory, CommunityDirectory, HouseDirectory);
 //            PersonMenu personMenu = new PersonMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
-            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,loginId);
+            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
             adminView.setVisible(true);
+            adminView.assignRole(role);
 //            doctorMenu.assignRole(role);
 //            patientMenu.assignRole(role);
 //            hospitalMenu.assignRole(role);
@@ -424,18 +422,18 @@ public class Medical_resource extends javax.swing.JFrame {
 //            personMenu.assignRole(role);
             setVisible(false);
         }
-//        else if(role.equals("Community Admin") && userId == 201 && password.equals("123")) {
-//            CommunityMenu communityMenu = new CommunityMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory, CityDirectory, CommunityDirectory, HouseDirectory);
-//            communityMenu.assignRole(role);
-//            communityMenu.setVisible(true);
-//            setVisible(false);
-//        }
-//        else if(role.equals("Hospital Admin") && userId == 501 && password.equals("123")) {
-//            HospitalMenu hospitalMenu = new HospitalMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
-//            hospitalMenu.assignRole(role);
-//            hospitalMenu.setVisible(true);
-//            setVisible(false);
-//        }
+        else if(role.equals("Community Admin") && userId == 101 && password.equals("admin")) {
+            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
+            adminView.setVisible(true);
+            adminView.assignRole(role);
+            setVisible(false);
+        }
+        else if(role.equals("Hospital Admin") && userId == 102 && password.equals("admin")) {
+            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
+            adminView.setVisible(true);
+            adminView.assignRole(role);
+            setVisible(false);
+        }
         else {
             JOptionPane.showMessageDialog(null, "Invalid Account!");
         }
