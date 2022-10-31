@@ -50,6 +50,8 @@ public class VitalSignPanel extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         saveBtn1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 204, 153));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Vital Signs");
 

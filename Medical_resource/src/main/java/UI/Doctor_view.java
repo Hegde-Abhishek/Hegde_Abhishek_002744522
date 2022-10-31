@@ -50,7 +50,6 @@ public class Doctor_view extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         leftPanel = new javax.swing.JPanel();
         patientDirBtn = new javax.swing.JButton();
-        backBtn = new javax.swing.JButton();
         encounterHisBtn = new javax.swing.JButton();
         vitalSignsBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
@@ -58,6 +57,10 @@ public class Doctor_view extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        leftPanel.setBackground(new java.awt.Color(204, 255, 204));
+
+        patientDirBtn.setBackground(new java.awt.Color(0, 0, 0));
+        patientDirBtn.setForeground(new java.awt.Color(255, 255, 255));
         patientDirBtn.setText("Patient Directory");
         patientDirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,13 +68,8 @@ public class Doctor_view extends javax.swing.JFrame {
             }
         });
 
-        backBtn.setText("Back ");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-
+        encounterHisBtn.setBackground(new java.awt.Color(0, 0, 0));
+        encounterHisBtn.setForeground(new java.awt.Color(255, 255, 255));
         encounterHisBtn.setText("Encounter History");
         encounterHisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +77,8 @@ public class Doctor_view extends javax.swing.JFrame {
             }
         });
 
+        vitalSignsBtn.setBackground(new java.awt.Color(0, 0, 0));
+        vitalSignsBtn.setForeground(new java.awt.Color(255, 255, 255));
         vitalSignsBtn.setText("View / Update Vital Signs");
         vitalSignsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +86,8 @@ public class Doctor_view extends javax.swing.JFrame {
             }
         });
 
+        logoutBtn.setBackground(new java.awt.Color(0, 0, 0));
+        logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutBtn.setText("Logout");
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +103,6 @@ public class Doctor_view extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(patientDirBtn)
-                    .addComponent(backBtn)
                     .addComponent(encounterHisBtn)
                     .addComponent(vitalSignsBtn)
                     .addComponent(logoutBtn))
@@ -116,14 +117,14 @@ public class Doctor_view extends javax.swing.JFrame {
                 .addComponent(encounterHisBtn)
                 .addGap(18, 18, 18)
                 .addComponent(vitalSignsBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
-                .addComponent(backBtn)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(106, 106, 106))
         );
 
         jSplitPane1.setLeftComponent(leftPanel);
+
+        rightPanel.setBackground(new java.awt.Color(217, 225, 225));
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -160,14 +161,6 @@ public class Doctor_view extends javax.swing.JFrame {
         jSplitPane1.setRightComponent(patientDirc);
     }//GEN-LAST:event_patientDirBtnActionPerformed
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-
-        // TODO add your handling code here:
-        Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
-        adminView.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_backBtnActionPerformed
-
     private void encounterHisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encounterHisBtnActionPerformed
         // TODO add your handling code here:
         EncounterHis encHistory = new EncounterHis(encounterDir, vitalSignsDir);
@@ -188,11 +181,11 @@ public class Doctor_view extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     public void roleOf(String role){
-        if(role.equals("admin")){
-           backBtn.setVisible(true);
-        } else {
-            backBtn.setVisible(false);
-        }
+//        if(role.equals("admin")){
+//           backBtn.setVisible(true);
+//        } else {
+//            backBtn.setVisible(false);
+//        }
     }
     
     /**
@@ -231,7 +224,6 @@ public class Doctor_view extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
     private javax.swing.JButton encounterHisBtn;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel leftPanel;

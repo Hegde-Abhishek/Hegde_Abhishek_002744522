@@ -1,0 +1,213 @@
+@startuml
+annotation java.lang.Override
+annotation java.lang.SuppressWarnings
+class Model.City
+class Model.Community
+class Model.Doctor
+class Model.DoctorDirectory
+class Model.Encounter
+class Model.EncounterHistory
+class Model.Hospital
+class Model.HospitalDirectory
+class Model.House
+class Model.Patient
+class Model.PatientDirectory
+class Model.Person
+class Model.PersonDirectory
+class Model.System
+class Model.VitalSigns
+class Model.VitalSignsHistory
+class UI.Admin_view
+class UI.BookAppointment
+class UI.CommunityPanel
+class UI.DoctorPanel
+class UI.Doctor_view
+class UI.EncounterForAdmin
+class UI.EncounterHis
+class UI.HospitalPanel
+class UI.HousePanel
+class UI.Medical_resource
+class UI.MyEncountersPanel
+class UI.MyProfilePanel
+class UI.PatientDirc
+class UI.Patient_view
+class UI.PersonPanel
+class UI.VitalSignPanel
+class java.util.ArrayList
+class java.util.Arrays
+class java.util.Date
+class javax.swing.DefaultComboBoxModel
+class javax.swing.JComboBox
+class javax.swing.JFrame
+class javax.swing.JOptionPane
+class javax.swing.JPanel
+class javax.swing.RowFilter
+class javax.swing.table.DefaultTableModel
+class javax.swing.table.TableRowSorter
+Model.City ..> java.util.ArrayList
+Model.City ..> javax.swing.JOptionPane
+Model.Community ..> java.util.ArrayList
+Model.Community ..> javax.swing.JOptionPane
+Model.Doctor ..> java.lang.Override
+Model.Doctor --|> Model.Person
+Model.DoctorDirectory ..> java.util.ArrayList
+Model.Encounter ..> java.lang.Override
+Model.Encounter ..> java.util.Date
+Model.EncounterHistory ..> java.util.ArrayList
+Model.Hospital ..> java.lang.Override
+Model.HospitalDirectory ..> java.util.ArrayList
+Model.House ..> java.util.ArrayList
+Model.Patient ..> java.lang.Override
+Model.Patient --|> Model.Person
+Model.PatientDirectory ..> java.util.ArrayList
+Model.Person ..> java.lang.Override
+Model.PersonDirectory ..> java.util.ArrayList
+Model.VitalSignsHistory ..> java.util.ArrayList
+UI.Admin_view ..> java.lang.SuppressWarnings
+UI.Admin_view ..> Model.City
+UI.Admin_view ..> Model.DoctorDirectory
+UI.Admin_view ..> Model.EncounterHistory
+UI.Admin_view ..> Model.HospitalDirectory
+UI.Admin_view ..> Model.PatientDirectory
+UI.Admin_view ..> Model.PersonDirectory
+UI.Admin_view ..> Model.VitalSignsHistory
+UI.Admin_view --|> javax.swing.JFrame
+UI.BookAppointment ..> java.lang.SuppressWarnings
+UI.BookAppointment ..> Model.Doctor
+UI.BookAppointment ..> Model.DoctorDirectory
+UI.BookAppointment ..> Model.EncounterHistory
+UI.BookAppointment ..> Model.Hospital
+UI.BookAppointment ..> Model.HospitalDirectory
+UI.BookAppointment ..> javax.swing.JOptionPane
+UI.BookAppointment --|> javax.swing.JPanel
+UI.BookAppointment ..> javax.swing.RowFilter
+UI.BookAppointment ..> javax.swing.table.DefaultTableModel
+UI.BookAppointment ..> javax.swing.table.TableRowSorter
+UI.CommunityPanel ..> java.lang.SuppressWarnings
+UI.CommunityPanel ..> Model.City
+UI.CommunityPanel ..> Model.Community
+UI.CommunityPanel ..> javax.swing.JOptionPane
+UI.CommunityPanel --|> javax.swing.JPanel
+UI.DoctorPanel ..> java.lang.SuppressWarnings
+UI.DoctorPanel ..> Model.Doctor
+UI.DoctorPanel ..> Model.DoctorDirectory
+UI.DoctorPanel ..> Model.Patient
+UI.DoctorPanel ..> Model.Person
+UI.DoctorPanel ..> javax.swing.JOptionPane
+UI.DoctorPanel --|> javax.swing.JPanel
+UI.DoctorPanel ..> javax.swing.table.DefaultTableModel
+UI.Doctor_view ..> java.lang.SuppressWarnings
+UI.Doctor_view ..> Model.DoctorDirectory
+UI.Doctor_view ..> Model.EncounterHistory
+UI.Doctor_view ..> Model.HospitalDirectory
+UI.Doctor_view ..> Model.PatientDirectory
+UI.Doctor_view ..> Model.PersonDirectory
+UI.Doctor_view ..> Model.VitalSignsHistory
+UI.Doctor_view --|> javax.swing.JFrame
+UI.Doctor_view ..> javax.swing.JOptionPane
+UI.EncounterForAdmin ..> java.lang.SuppressWarnings
+UI.EncounterForAdmin ..> Model.Doctor
+UI.EncounterForAdmin ..> Model.DoctorDirectory
+UI.EncounterForAdmin ..> Model.Encounter
+UI.EncounterForAdmin ..> Model.EncounterHistory
+UI.EncounterForAdmin ..> Model.Person
+UI.EncounterForAdmin ..> Model.PersonDirectory
+UI.EncounterForAdmin ..> java.util.Date
+UI.EncounterForAdmin ..> javax.swing.JOptionPane
+UI.EncounterForAdmin --|> javax.swing.JPanel
+UI.EncounterForAdmin ..> javax.swing.table.DefaultTableModel
+UI.EncounterHis ..> java.lang.SuppressWarnings
+UI.EncounterHis ..> Model.Encounter
+UI.EncounterHis ..> Model.EncounterHistory
+UI.EncounterHis ..> Model.Person
+UI.EncounterHis ..> Model.VitalSigns
+UI.EncounterHis ..> Model.VitalSignsHistory
+UI.EncounterHis ..> java.util.Date
+UI.EncounterHis ..> javax.swing.JOptionPane
+UI.EncounterHis --|> javax.swing.JPanel
+UI.EncounterHis ..> javax.swing.table.DefaultTableModel
+UI.HospitalPanel ..> java.lang.SuppressWarnings
+UI.HospitalPanel ..> Model.Hospital
+UI.HospitalPanel ..> Model.HospitalDirectory
+UI.HospitalPanel ..> Model.Person
+UI.HospitalPanel ..> javax.swing.JOptionPane
+UI.HospitalPanel --|> javax.swing.JPanel
+UI.HospitalPanel ..> javax.swing.table.DefaultTableModel
+UI.HousePanel ..> java.lang.SuppressWarnings
+UI.HousePanel ..> Model.City
+UI.HousePanel ..> Model.Community
+UI.HousePanel ..> Model.House
+UI.HousePanel ..> Model.Person
+UI.HousePanel ..> java.util.ArrayList
+UI.HousePanel ..> javax.swing.JOptionPane
+UI.HousePanel --|> javax.swing.JPanel
+UI.HousePanel ..> javax.swing.table.DefaultTableModel
+UI.Medical_resource ..> java.lang.SuppressWarnings
+UI.Medical_resource ..> Model.DoctorDirectory
+UI.Medical_resource ..> Model.EncounterHistory
+UI.Medical_resource ..> Model.HospitalDirectory
+UI.Medical_resource ..> Model.PatientDirectory
+UI.Medical_resource ..> Model.Person
+UI.Medical_resource ..> Model.PersonDirectory
+UI.Medical_resource ..> Model.VitalSignsHistory
+UI.Medical_resource --|> javax.swing.JFrame
+UI.Medical_resource ..> javax.swing.JOptionPane
+UI.MyEncountersPanel ..> java.lang.SuppressWarnings
+UI.MyEncountersPanel ..> Model.Encounter
+UI.MyEncountersPanel ..> Model.EncounterHistory
+UI.MyEncountersPanel ..> Model.VitalSigns
+UI.MyEncountersPanel ..> Model.VitalSignsHistory
+UI.MyEncountersPanel --|> javax.swing.JPanel
+UI.MyEncountersPanel ..> javax.swing.table.DefaultTableModel
+UI.MyProfilePanel ..> java.lang.SuppressWarnings
+UI.MyProfilePanel ..> Model.Patient
+UI.MyProfilePanel ..> Model.PatientDirectory
+UI.MyProfilePanel ..> Model.Person
+UI.MyProfilePanel ..> Model.PersonDirectory
+UI.MyProfilePanel --|> javax.swing.JPanel
+UI.PatientDirc ..> java.lang.SuppressWarnings
+UI.PatientDirc ..> Model.Doctor
+UI.PatientDirc ..> Model.DoctorDirectory
+UI.PatientDirc ..> Model.Encounter
+UI.PatientDirc ..> Model.EncounterHistory
+UI.PatientDirc ..> Model.Patient
+UI.PatientDirc ..> Model.PatientDirectory
+UI.PatientDirc ..> Model.Person
+UI.PatientDirc ..> Model.PersonDirectory
+UI.PatientDirc ..> java.util.Date
+UI.PatientDirc ..> javax.swing.JOptionPane
+UI.PatientDirc --|> javax.swing.JPanel
+UI.PatientDirc ..> javax.swing.table.DefaultTableModel
+UI.Patient_view ..> java.lang.SuppressWarnings
+UI.Patient_view ..> Model.DoctorDirectory
+UI.Patient_view ..> Model.EncounterHistory
+UI.Patient_view ..> Model.HospitalDirectory
+UI.Patient_view ..> Model.PatientDirectory
+UI.Patient_view ..> Model.PersonDirectory
+UI.Patient_view ..> Model.VitalSignsHistory
+UI.Patient_view --|> javax.swing.JFrame
+UI.PersonPanel ..> java.lang.SuppressWarnings
+UI.PersonPanel ..> Model.City
+UI.PersonPanel ..> Model.Community
+UI.PersonPanel ..> Model.Doctor
+UI.PersonPanel ..> Model.DoctorDirectory
+UI.PersonPanel ..> Model.Hospital
+UI.PersonPanel ..> Model.HospitalDirectory
+UI.PersonPanel ..> Model.Patient
+UI.PersonPanel ..> Model.PatientDirectory
+UI.PersonPanel ..> Model.Person
+UI.PersonPanel ..> Model.PersonDirectory
+UI.PersonPanel ..> java.util.ArrayList
+UI.PersonPanel ..> java.util.Arrays
+UI.PersonPanel ..> javax.swing.DefaultComboBoxModel
+UI.PersonPanel ..> javax.swing.JComboBox
+UI.PersonPanel ..> javax.swing.JOptionPane
+UI.PersonPanel --|> javax.swing.JPanel
+UI.PersonPanel ..> javax.swing.table.DefaultTableModel
+UI.VitalSignPanel ..> java.lang.SuppressWarnings
+UI.VitalSignPanel ..> Model.VitalSigns
+UI.VitalSignPanel ..> Model.VitalSignsHistory
+UI.VitalSignPanel ..> javax.swing.JOptionPane
+UI.VitalSignPanel --|> javax.swing.JPanel
+UI.VitalSignPanel ..> javax.swing.table.DefaultTableModel
+@enduml

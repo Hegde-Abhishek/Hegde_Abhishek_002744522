@@ -63,6 +63,7 @@ public class EncounterForAdmin extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
 
+        addEncBtn.setBackground(new java.awt.Color(204, 255, 204));
         addEncBtn.setText("Add an encounter");
         addEncBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +84,8 @@ public class EncounterForAdmin extends javax.swing.JPanel {
             }
         ));
         jScrollPane2.setViewportView(encHisTable);
+
+        addingPanel.setBackground(new java.awt.Color(255, 255, 204));
 
         patTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,6 +119,7 @@ public class EncounterForAdmin extends javax.swing.JPanel {
 
         jLabel3.setText("Select a doctor");
 
+        jButton1.setBackground(new java.awt.Color(204, 255, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +128,7 @@ public class EncounterForAdmin extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setText("Illness :");
+        jLabel4.setText("Description");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -153,11 +157,12 @@ public class EncounterForAdmin extends javax.swing.JPanel {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addingPanelLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(53, 53, 53)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(270, 270, 270)
+                        .addComponent(jButton1))
+                    .addGroup(addingPanelLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 189, Short.MAX_VALUE))
         );
         addingPanelLayout.setVerticalGroup(
             addingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,10 +187,10 @@ public class EncounterForAdmin extends javax.swing.JPanel {
                             .addGroup(addingPanelLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addingPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)))
+                        .addGap(0, 41, Short.MAX_VALUE))
+                    .addGroup(addingPanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

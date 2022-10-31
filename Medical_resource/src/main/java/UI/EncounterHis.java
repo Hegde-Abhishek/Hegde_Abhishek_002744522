@@ -9,6 +9,7 @@ import Model.EncounterHistory;
 import Model.Person;
 import Model.VitalSigns;
 import Model.VitalSignsHistory;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,14 +48,11 @@ public class EncounterHis extends javax.swing.JPanel {
         updateBtn = new javax.swing.JButton();
         updateEncPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        encIdLabel = new javax.swing.JLabel();
-        encIdField = new javax.swing.JTextField();
-        bpLabel = new javax.swing.JLabel();
-        bpField = new javax.swing.JTextField();
-        saveBtn = new javax.swing.JButton();
+        updateSaveBtn = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         bpLabel1 = new javax.swing.JLabel();
-        bpField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         createVitalSignsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         bloodPressure = new javax.swing.JTextField();
@@ -95,13 +93,18 @@ public class EncounterHis extends javax.swing.JPanel {
 
         jLabel1.setText("Date");
 
-        encIdLabel.setText("Encounter Id");
+        updateSaveBtn.setText("Save");
+        updateSaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateSaveBtnActionPerformed(evt);
+            }
+        });
 
-        bpLabel.setText("BP");
+        bpLabel1.setText("Description");
 
-        saveBtn.setText("Save");
-
-        bpLabel1.setText("Illness");
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout updateEncPanelLayout = new javax.swing.GroupLayout(updateEncPanel);
         updateEncPanel.setLayout(updateEncPanelLayout);
@@ -109,26 +112,18 @@ public class EncounterHis extends javax.swing.JPanel {
             updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(updateEncPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(updateEncPanelLayout.createSequentialGroup()
-                        .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(encIdLabel)
-                            .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addGap(48, 48, 48)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(updateEncPanelLayout.createSequentialGroup()
+                        .addComponent(bpLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(encIdField)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
-                    .addGroup(updateEncPanelLayout.createSequentialGroup()
-                        .addComponent(bpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bpField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(saveBtn)
-                        .addGroup(updateEncPanelLayout.createSequentialGroup()
-                            .addComponent(bpLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(bpField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateSaveBtn))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         updateEncPanelLayout.setVerticalGroup(
             updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,21 +132,13 @@ public class EncounterHis extends javax.swing.JPanel {
                 .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(encIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(encIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bpLabel)
-                    .addComponent(bpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(28, 28, 28)
+                .addGroup(updateEncPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bpLabel1)
-                    .addComponent(bpField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saveBtn)
-                .addGap(50, 50, 50))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(updateSaveBtn)
+                .addContainerGap())
         );
 
         jLabel2.setText("Blood Pressure :");
@@ -196,7 +183,7 @@ public class EncounterHis extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(breathingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(3, 3, 3)))
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         createVitalSignsPanelLayout.setVerticalGroup(
             createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,18 +227,19 @@ public class EncounterHis extends javax.swing.JPanel {
             .addComponent(jScrollPane2)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createVitalSignsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(createVitalSignsBtn)))
+                        .addComponent(createVitalSignsBtn))
+                    .addComponent(createVitalSignsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(updateBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateBtn)
+                        .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateEncPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                        .addGap(26, 26, 26)
+                        .addComponent(updateEncPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,8 +252,8 @@ public class EncounterHis extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(updateBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(updateEncPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(updateEncPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(createVitalSignsBtn)
@@ -284,6 +272,10 @@ public class EncounterHis extends javax.swing.JPanel {
             return;
         }
         updateEncPanel.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel) encHisTable.getModel();
+        Encounter selectedE = (Encounter) model.getValueAt(selectedRowIndex, 0);
+        jDateChooser1.setDate(selectedE.getDate());
+        jTextArea1.setText(selectedE.getIllness());
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void createVitalSignsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createVitalSignsBtnActionPerformed
@@ -323,6 +315,20 @@ public class EncounterHis extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Vital Signs added");
     }//GEN-LAST:event_saveBtn1ActionPerformed
 
+    private void updateSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateSaveBtnActionPerformed
+        // TODO add your handling code here:
+        Date date = jDateChooser1.getDate();
+        String description = jTextArea1.getText();
+        if(date == null){
+            JOptionPane.showMessageDialog(null, "Please select date");
+        }
+        int selectedRowIndex = encHisTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) encHisTable.getModel();
+        Encounter selectedE = (Encounter) model.getValueAt(selectedRowIndex, 0);
+        selectedE.setDate(date);
+        selectedE.setIllness(description);
+    }//GEN-LAST:event_updateSaveBtnActionPerformed
+
     private void populateEncounterTable() {
         DefaultTableModel model = (DefaultTableModel) encHisTable.getModel();
         model.setRowCount(0);
@@ -342,16 +348,11 @@ public class EncounterHis extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bloodPressure;
-    private javax.swing.JTextField bpField;
-    private javax.swing.JTextField bpField1;
-    private javax.swing.JLabel bpLabel;
     private javax.swing.JLabel bpLabel1;
     private javax.swing.JTextField breathingRate;
     private javax.swing.JButton createVitalSignsBtn;
     private javax.swing.JPanel createVitalSignsPanel;
     private javax.swing.JTable encHisTable;
-    private javax.swing.JTextField encIdField;
-    private javax.swing.JLabel encIdLabel;
     private javax.swing.JLabel header;
     private javax.swing.JTextField heartRateField;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -360,11 +361,13 @@ public class EncounterHis extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton saveBtn;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton saveBtn1;
     private javax.swing.JTextField temperature;
     private javax.swing.JButton updateBtn;
     private javax.swing.JPanel updateEncPanel;
+    private javax.swing.JButton updateSaveBtn;
     // End of variables declaration//GEN-END:variables
 }

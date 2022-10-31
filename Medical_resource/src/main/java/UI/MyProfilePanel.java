@@ -20,9 +20,9 @@ public class MyProfilePanel extends javax.swing.JPanel {
     PersonDirectory personDir;
     PatientDirectory patientDir;
     int loginId;
-    public MyProfilePanel(PatientDirectory patientDir, int loginId) {
+    public MyProfilePanel(PersonDirectory personDir, int loginId) {
         initComponents();
-        this.patientDir = patientDir;
+        this.personDir = personDir;
         this.loginId = loginId;
         populateFields();
     }

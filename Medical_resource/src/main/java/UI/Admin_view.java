@@ -236,7 +236,7 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void personBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personBtnActionPerformed
         // TODO add your handling code here:
-        PersonPanel personPanel = new PersonPanel(personDir, patientDir,docDir,city);
+        PersonPanel personPanel = new PersonPanel(personDir, patientDir,docDir,hospitalDir,city);
         jSplitPane2.setRightComponent(personPanel);
     }//GEN-LAST:event_personBtnActionPerformed
 

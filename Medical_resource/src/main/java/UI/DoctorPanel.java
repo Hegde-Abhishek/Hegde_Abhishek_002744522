@@ -58,6 +58,8 @@ public class DoctorPanel extends javax.swing.JPanel {
         updateDoctorBtn = new javax.swing.JButton();
         delDoctorBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Doctor Directory");
 
@@ -74,6 +76,7 @@ public class DoctorPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(docTable);
 
+        addDoctorBtn.setBackground(new java.awt.Color(204, 204, 255));
         addDoctorBtn.setText("Add a doctor");
         addDoctorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +90,7 @@ public class DoctorPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Hospital Name :");
 
+        saveBtn.setBackground(new java.awt.Color(204, 204, 255));
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +98,7 @@ public class DoctorPanel extends javax.swing.JPanel {
             }
         });
 
+        updateBtn.setBackground(new java.awt.Color(204, 204, 255));
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,19 +147,18 @@ public class DoctorPanel extends javax.swing.JPanel {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hosNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(detPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(46, 46, 46)
-                            .addComponent(nameF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(detPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(46, 46, 46)
-                            .addComponent(ageF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(detPanelLayout.createSequentialGroup()
-                            .addComponent(saveBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(updateBtn)))
+                    .addGroup(detPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(46, 46, 46)
+                        .addComponent(nameF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(detPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(46, 46, 46)
+                        .addComponent(ageF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(detPanelLayout.createSequentialGroup()
+                        .addComponent(saveBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(updateBtn))
                     .addComponent(genderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -182,6 +186,7 @@ public class DoctorPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        updateDoctorBtn.setBackground(new java.awt.Color(204, 204, 255));
         updateDoctorBtn.setText("Update a doctor");
         updateDoctorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +194,7 @@ public class DoctorPanel extends javax.swing.JPanel {
             }
         });
 
+        delDoctorBtn.setBackground(new java.awt.Color(204, 204, 255));
         delDoctorBtn.setText("Delete a doctor");
         delDoctorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
