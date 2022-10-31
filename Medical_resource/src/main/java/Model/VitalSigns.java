@@ -91,6 +91,10 @@ public class VitalSigns {
         this.breathingRate = breathingRate;
     }
     
+    @Override
+    public String toString(){
+        return patientName;
+    }
     
     
 }

@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.Community;
 import Model.DoctorDirectory;
 import Model.EncounterHistory;
 import Model.HospitalDirectory;
@@ -28,6 +29,7 @@ public class Medical_resource extends javax.swing.JFrame {
     EncounterHistory encounterDir;
     VitalSignsHistory vitalSignsDir;
     int loginId;
+    Community community;
     public Medical_resource() {
         initComponents();
         personDir = new PersonDirectory();
@@ -84,12 +86,13 @@ public class Medical_resource extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 255, 255));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setBackground(new java.awt.Color(204, 255, 255));
         jLabel1.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel1.setText("User ID : ");
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setBackground(new java.awt.Color(204, 255, 255));
         jLabel2.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel2.setText("Password :");
 
@@ -105,6 +108,7 @@ public class Medical_resource extends javax.swing.JFrame {
             }
         });
 
+        login.setBackground(new java.awt.Color(255, 255, 51));
         login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         login.setText("Login");
         login.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +119,7 @@ public class Medical_resource extends javax.swing.JFrame {
 
         jLabel3.setText("New User?");
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 51));
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,6 +246,7 @@ public class Medical_resource extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setBackground(new java.awt.Color(204, 255, 255));
         jLabel4.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         jLabel4.setText("Role :");
 
@@ -377,7 +383,7 @@ public class Medical_resource extends javax.swing.JFrame {
 //            HospitalMenu hospitalMenu = new HospitalMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
 //            CommunityMenu communityMenu = new CommunityMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory, CityDirectory, CommunityDirectory, HouseDirectory);
 //            PersonMenu personMenu = new PersonMenu(PersonDirectory, loginID, PatientDirectory, HospitalDirectory, DoctorDirectory, EncounterHistory, VitalSignsHistory);
-            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
+            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId,community);
             adminView.setVisible(true);
             adminView.assignRole(role);
 //            doctorMenu.assignRole(role);
@@ -388,13 +394,13 @@ public class Medical_resource extends javax.swing.JFrame {
             setVisible(false);
         }
         else if(role.equals("Community Admin") && userId == 101 && password.equals("admin")) {
-            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
+            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId,community);
             adminView.setVisible(true);
             adminView.assignRole(role);
             setVisible(false);
         }
         else if(role.equals("Hospital Admin") && userId == 102 && password.equals("admin")) {
-            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId);
+            Admin_view adminView = new Admin_view(personDir,patientDir,hospitalDir,docDir,encounterDir,vitalSignsDir,loginId,community);
             adminView.setVisible(true);
             adminView.assignRole(role);
             setVisible(false);

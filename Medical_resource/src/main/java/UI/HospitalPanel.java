@@ -89,6 +89,7 @@ public class HospitalPanel extends javax.swing.JPanel {
             }
         });
 
+        hospitalTable.setBackground(new java.awt.Color(204, 255, 255));
         hospitalTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -101,6 +102,8 @@ public class HospitalPanel extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(hospitalTable);
+
+        detPanel.setBackground(new java.awt.Color(255, 255, 204));
 
         jLabel9.setText("Community :");
 

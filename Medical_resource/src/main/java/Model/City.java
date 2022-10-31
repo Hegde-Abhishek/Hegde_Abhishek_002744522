@@ -56,5 +56,8 @@ public class City {
         }
         addCount=0;
     }
-    
+    @Override
+    public String toString(){
+        return cityName;
+    }
 }

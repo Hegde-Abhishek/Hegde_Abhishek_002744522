@@ -452,8 +452,8 @@ public class DoctorPanel extends javax.swing.JPanel {
             row[0]= d;
             row[1]= d.getDoctorId();
             row[2]= d.getAge();
-            row[3]= d.getGender();
-            row[4]= d.getHospitalName();
+            row[3]= d.getHospitalName();
+            row[4]= d.getGender();
             
             model.addRow(row);
         }

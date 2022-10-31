@@ -5,6 +5,7 @@
 package UI;
 
 import Model.City;
+import Model.Community;
 import Model.DoctorDirectory;
 import Model.EncounterHistory;
 import Model.HospitalDirectory;
@@ -27,8 +28,9 @@ public class Admin_view extends javax.swing.JFrame {
     EncounterHistory encounterDir;
     VitalSignsHistory vitalSignsDir;
     City city;
+    Community community;
     int loginId;
-    public Admin_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir, DoctorDirectory docDir,EncounterHistory encounterDir,VitalSignsHistory vitalSignsDir, int loginId) {
+    public Admin_view(PersonDirectory personDir,PatientDirectory patientDir,HospitalDirectory hospitalDir, DoctorDirectory docDir,EncounterHistory encounterDir,VitalSignsHistory vitalSignsDir, int loginId,Community community) {
         initComponents();
         this.personDir = personDir;
         this.patientDir = patientDir;
@@ -37,6 +39,7 @@ public class Admin_view extends javax.swing.JFrame {
         this.encounterDir = encounterDir;
         this.vitalSignsDir = vitalSignsDir;
         this.loginId = loginId;
+        this.community = community;
         this.city = new City("Boston");
         comAdmin.setVisible(false);
         hosAdmin.setVisible(false);
@@ -236,7 +239,7 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void personBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personBtnActionPerformed
         // TODO add your handling code here:
-        PersonPanel personPanel = new PersonPanel(personDir, patientDir,docDir,hospitalDir,city);
+        PersonPanel personPanel = new PersonPanel(personDir, patientDir,docDir,hospitalDir,city,community);
         jSplitPane2.setRightComponent(personPanel);
     }//GEN-LAST:event_personBtnActionPerformed
 

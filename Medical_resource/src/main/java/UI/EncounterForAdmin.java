@@ -63,6 +63,8 @@ public class EncounterForAdmin extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 204));
+
         addEncBtn.setBackground(new java.awt.Color(204, 255, 204));
         addEncBtn.setText("Add an encounter");
         addEncBtn.addActionListener(new java.awt.event.ActionListener() {

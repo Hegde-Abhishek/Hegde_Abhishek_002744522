@@ -68,6 +68,8 @@ public class EncounterHis extends javax.swing.JPanel {
         error = new javax.swing.JLabel();
         createVitalSignsBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 204, 204));
+
         header.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         header.setText("Encounter History");
 
@@ -85,6 +87,8 @@ public class EncounterHis extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(encHisTable);
 
+        updateBtn.setBackground(new java.awt.Color(255, 255, 204));
+        updateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         updateBtn.setText("Update encounter details");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,10 +96,13 @@ public class EncounterHis extends javax.swing.JPanel {
             }
         });
 
+        updateEncPanel.setBackground(new java.awt.Color(255, 204, 204));
         updateEncPanel.setPreferredSize(new java.awt.Dimension(350, 252));
 
         jLabel1.setText("Date");
 
+        updateSaveBtn.setBackground(new java.awt.Color(255, 255, 204));
+        updateSaveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         updateSaveBtn.setText("Save");
         updateSaveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +151,8 @@ public class EncounterHis extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        createVitalSignsPanel.setBackground(new java.awt.Color(255, 204, 204));
+
         jLabel2.setText("Blood Pressure :");
 
         bloodPressure.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -158,6 +167,8 @@ public class EncounterHis extends javax.swing.JPanel {
 
         jLabel5.setText("Breathing rate :");
 
+        saveBtn1.setBackground(new java.awt.Color(255, 255, 204));
+        saveBtn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         saveBtn1.setText("Save");
         saveBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,6 +234,8 @@ public class EncounterHis extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        createVitalSignsBtn.setBackground(new java.awt.Color(255, 255, 204));
+        createVitalSignsBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         createVitalSignsBtn.setText("Create Vital Signs");
         createVitalSignsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
