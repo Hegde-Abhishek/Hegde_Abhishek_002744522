@@ -6,6 +6,8 @@ package UI;
 
 import Model.City;
 import Model.Community;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,6 +42,7 @@ public class CommunityPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         cityField = new javax.swing.JTextField();
         saveCity = new javax.swing.JButton();
+        error = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 255));
 
@@ -48,6 +51,12 @@ public class CommunityPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Community name :");
+
+        commNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                commNameFieldKeyReleased(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saveBtn.setText("Save");
@@ -76,27 +85,42 @@ public class CommunityPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(saveCity)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(265, 265, 265)
+                        .addComponent(error))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(saveBtn)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(45, 45, 45)
                                 .addComponent(commNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(saveBtn)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel3)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(162, 162, 162)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(saveCity)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))))))
+                .addContainerGap(434, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(52, 52, 52)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(commNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(saveBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -104,15 +128,9 @@ public class CommunityPanel extends javax.swing.JPanel {
                     .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(saveCity)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(commNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(saveBtn)
-                .addGap(108, 108, 108))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(error)
+                .addGap(145, 145, 145))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,10 +154,26 @@ public class CommunityPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_saveCityActionPerformed
 
+    private void commNameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_commNameFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(commNameField.getText());
+        if(!same.matches()){
+            error.setText("Only Alphabets allowed.");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_commNameFieldKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cityField;
     private javax.swing.JTextField commNameField;
+    private javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

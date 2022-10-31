@@ -9,6 +9,8 @@ import Model.Community;
 import Model.House;
 import Model.Person;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,6 +49,7 @@ public class HousePanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         communityTable = new javax.swing.JTable();
         saveBtn = new javax.swing.JButton();
+        error = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 204));
 
@@ -55,6 +58,12 @@ public class HousePanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("House name :");
+
+        tName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tNameKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Pick a community :");
@@ -97,9 +106,11 @@ public class HousePanel extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tName, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(error)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tName, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
                 .addContainerGap(202, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -119,9 +130,11 @@ public class HousePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110)
+                .addGap(70, 70, 70)
+                .addComponent(error)
+                .addGap(24, 24, 24)
                 .addComponent(saveBtn)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,6 +166,21 @@ public class HousePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    private void tNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tNameKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(tName.getText());
+        if(!same.matches()){
+            error.setText("Only 5 Numbers allowed");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_tNameKeyReleased
+
        private void loadCommunityTable() {
        DefaultTableModel md=(DefaultTableModel) communityTable.getModel();
        md.setRowCount(0);
@@ -166,6 +194,7 @@ public class HousePanel extends javax.swing.JPanel {
         }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable communityTable;
+    private javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

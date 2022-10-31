@@ -8,6 +8,8 @@ import Model.Doctor;
 import Model.DoctorDirectory;
 import Model.Patient;
 import Model.Person;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,6 +57,7 @@ public class DoctorPanel extends javax.swing.JPanel {
         gender = new javax.swing.JLabel();
         maleRadioButton = new javax.swing.JRadioButton();
         femaleRadioButton = new javax.swing.JRadioButton();
+        error = new javax.swing.JLabel();
         updateDoctorBtn = new javax.swing.JButton();
         delDoctorBtn = new javax.swing.JButton();
 
@@ -86,9 +89,27 @@ public class DoctorPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Name :");
 
+        nameF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameFKeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("Age :");
 
+        ageF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ageFKeyReleased(evt);
+            }
+        });
+
         jLabel5.setText("Hospital Name :");
+
+        hosNameF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                hosNameFKeyReleased(evt);
+            }
+        });
 
         saveBtn.setBackground(new java.awt.Color(204, 204, 255));
         saveBtn.setText("Save");
@@ -161,6 +182,10 @@ public class DoctorPanel extends javax.swing.JPanel {
                         .addComponent(updateBtn))
                     .addComponent(genderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(detPanelLayout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(error)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detPanelLayout.setVerticalGroup(
             detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +204,9 @@ public class DoctorPanel extends javax.swing.JPanel {
                     .addComponent(hosNameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(genderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(7, 7, 7)
+                .addComponent(error)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn)
                     .addComponent(updateBtn))
@@ -347,6 +374,51 @@ public class DoctorPanel extends javax.swing.JPanel {
         populateDocTable();
     }//GEN-LAST:event_updateBtnActionPerformed
 
+    private void nameFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(nameF.getText());
+        if(!same.matches()){
+            error.setText("Only Alphabets allowed.");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_nameFKeyReleased
+
+    private void ageFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageFKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,2}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(ageF.getText());
+        if(!same.matches()){
+            error.setText("Only Numbers allowed. Max 99");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_ageFKeyReleased
+
+    private void hosNameFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hosNameFKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(hosNameF.getText());
+        if(!same.matches()){
+            error.setText("Only Alphabets allowed.");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_hosNameFKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDoctorBtn;
@@ -354,6 +426,7 @@ public class DoctorPanel extends javax.swing.JPanel {
     private javax.swing.JButton delDoctorBtn;
     private javax.swing.JPanel detPanel;
     private javax.swing.JTable docTable;
+    private javax.swing.JLabel error;
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JLabel gender;
     private javax.swing.JPanel genderPanel;

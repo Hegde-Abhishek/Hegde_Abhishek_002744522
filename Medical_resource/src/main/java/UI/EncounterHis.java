@@ -10,6 +10,8 @@ import Model.Person;
 import Model.VitalSigns;
 import Model.VitalSignsHistory;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,6 +65,7 @@ public class EncounterHis extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         breathingRate = new javax.swing.JTextField();
         saveBtn1 = new javax.swing.JButton();
+        error = new javax.swing.JLabel();
         createVitalSignsBtn = new javax.swing.JButton();
 
         header.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
@@ -143,6 +146,12 @@ public class EncounterHis extends javax.swing.JPanel {
 
         jLabel2.setText("Blood Pressure :");
 
+        bloodPressure.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                bloodPressureKeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("Heart Rate :");
 
         jLabel4.setText("Temperature (deg F) :");
@@ -162,8 +171,11 @@ public class EncounterHis extends javax.swing.JPanel {
             createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveBtn1)
+                .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
+                        .addComponent(error)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveBtn1))
                     .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
                         .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(createVitalSignsPanelLayout.createSequentialGroup()
@@ -205,7 +217,9 @@ public class EncounterHis extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(breathingRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(saveBtn1)
+                .addGroup(createVitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn1)
+                    .addComponent(error))
                 .addContainerGap())
         );
 
@@ -329,6 +343,21 @@ public class EncounterHis extends javax.swing.JPanel {
         selectedE.setIllness(description);
     }//GEN-LAST:event_updateSaveBtnActionPerformed
 
+    private void bloodPressureKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bloodPressureKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,2}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(bloodPressure.getText());
+        if(!same.matches()){
+            error.setText("Only Numbers allowed. Max 99");
+            saveBtn1.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn1.setEnabled(true);
+        }
+    }//GEN-LAST:event_bloodPressureKeyReleased
+
     private void populateEncounterTable() {
         DefaultTableModel model = (DefaultTableModel) encHisTable.getModel();
         model.setRowCount(0);
@@ -353,6 +382,7 @@ public class EncounterHis extends javax.swing.JPanel {
     private javax.swing.JButton createVitalSignsBtn;
     private javax.swing.JPanel createVitalSignsPanel;
     private javax.swing.JTable encHisTable;
+    private javax.swing.JLabel error;
     private javax.swing.JLabel header;
     private javax.swing.JTextField heartRateField;
     private com.toedter.calendar.JDateChooser jDateChooser1;

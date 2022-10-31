@@ -14,8 +14,11 @@ import Model.Patient;
 import Model.Person;
 import Model.PersonDirectory;
 import Model.PatientDirectory;
+import static java.lang.System.err;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -44,6 +47,7 @@ public class PersonPanel extends javax.swing.JPanel {
     public PersonPanel(PersonDirectory personDir, PatientDirectory patientDir,DoctorDirectory docDir,HospitalDirectory hospitalDir,City city) {
         initComponents();
         detailPanel.setVisible(false);
+        jPanel1.setVisible(false);
         this.personDir = personDir;
         this.patientDir = patientDir;
         this.docDir = docDir;
@@ -89,6 +93,7 @@ public class PersonPanel extends javax.swing.JPanel {
         femaleRadioButton = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         communityTable = new javax.swing.JTable();
+        error = new javax.swing.JLabel();
         updatePersonBtn = new javax.swing.JButton();
         deletePersonBtn = new javax.swing.JButton();
         addAsPatientBtn = new javax.swing.JButton();
@@ -96,6 +101,9 @@ public class PersonPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         hospitalField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Person Directory");
@@ -116,6 +124,7 @@ public class PersonPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(personTable);
 
+        addPersonBtn.setBackground(new java.awt.Color(204, 255, 204));
         addPersonBtn.setText("Add a person");
         addPersonBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,15 +143,51 @@ public class PersonPanel extends javax.swing.JPanel {
                 ageFieldActionPerformed(evt);
             }
         });
+        ageField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ageFieldKeyReleased(evt);
+            }
+        });
 
         pincode.setText("Pincode :");
 
         name.setText("Name :");
 
+        cityField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cityFieldKeyReleased(evt);
+            }
+        });
+
+        pincodeField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pincodeFieldKeyReleased(evt);
+            }
+        });
+
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passwordKeyReleased(evt);
+            }
+        });
+
+        phoneField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                phoneFieldKeyReleased(evt);
+            }
+        });
+
         age.setText("Age :");
+
+        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameFieldKeyReleased(evt);
+            }
+        });
 
         house.setText("Password :");
 
+        saveBtn.setBackground(new java.awt.Color(204, 255, 204));
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +195,7 @@ public class PersonPanel extends javax.swing.JPanel {
             }
         });
 
+        updateBtn.setBackground(new java.awt.Color(204, 255, 204));
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,36 +253,42 @@ public class PersonPanel extends javax.swing.JPanel {
             .addGroup(detailPanelLayout.createSequentialGroup()
                 .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(detailPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cityLabel)
-                                    .addComponent(phone))
-                                .addGap(30, 30, 30)
+                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(detailPanelLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(cityLabel)
+                                            .addComponent(phone))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(phoneField)
+                                            .addComponent(cityField)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(age)
+                                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(ageField, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                            .addComponent(nameField)))
+                                    .addComponent(genderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(detailPanelLayout.createSequentialGroup()
                                 .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(phoneField)
-                                    .addComponent(cityField)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailPanelLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(age)
-                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ageField, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                                    .addComponent(nameField)))
-                            .addComponent(genderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(pincode)
+                                    .addComponent(house))
+                                .addGap(29, 29, 29)
+                                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(password)
+                                    .addComponent(pincodeField))))
+                        .addGap(18, 18, 18))
                     .addGroup(detailPanelLayout.createSequentialGroup()
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pincode)
-                            .addComponent(house))
-                        .addGap(29, 29, 29)
-                        .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(password)
-                            .addComponent(pincodeField))))
-                .addGap(18, 18, 18)
+                        .addGap(81, 81, 81)
+                        .addComponent(error)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveBtn)
                     .addComponent(updateBtn)
@@ -281,10 +333,13 @@ public class PersonPanel extends javax.swing.JPanel {
                     .addComponent(genderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(saveBtn)
+                .addGroup(detailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn)
+                    .addComponent(error))
                 .addGap(14, 14, 14))
         );
 
+        updatePersonBtn.setBackground(new java.awt.Color(204, 255, 204));
         updatePersonBtn.setText("Update a person");
         updatePersonBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +347,7 @@ public class PersonPanel extends javax.swing.JPanel {
             }
         });
 
+        deletePersonBtn.setBackground(new java.awt.Color(204, 255, 204));
         deletePersonBtn.setText("Delete person");
         deletePersonBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,6 +355,7 @@ public class PersonPanel extends javax.swing.JPanel {
             }
         });
 
+        addAsPatientBtn.setBackground(new java.awt.Color(204, 255, 204));
         addAsPatientBtn.setText("Add as patient");
         addAsPatientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,6 +363,7 @@ public class PersonPanel extends javax.swing.JPanel {
             }
         });
 
+        addAsDoctortBtn.setBackground(new java.awt.Color(204, 255, 204));
         addAsDoctortBtn.setText("Add as doctor");
         addAsDoctortBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,6 +379,13 @@ public class PersonPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Enter Hospital Name");
 
+        jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -328,18 +393,26 @@ public class PersonPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hospitalField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(80, Short.MAX_VALUE))
+                    .addComponent(hospitalField)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 28, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(hospitalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(9, 9, 9)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -348,50 +421,52 @@ public class PersonPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jLabel1)
+                .addGap(199, 563, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel1))
+                        .addGap(26, 26, 26)
+                        .addComponent(addPersonBtn)
+                        .addGap(44, 44, 44)
+                        .addComponent(updatePersonBtn)
+                        .addGap(44, 44, 44)
+                        .addComponent(deletePersonBtn)
+                        .addGap(44, 44, 44)
+                        .addComponent(addAsPatientBtn))
+                    .addComponent(detailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(addPersonBtn)
-                                .addGap(44, 44, 44)
-                                .addComponent(updatePersonBtn)
-                                .addGap(44, 44, 44)
-                                .addComponent(deletePersonBtn)
-                                .addGap(44, 44, 44)
-                                .addComponent(addAsPatientBtn))
-                            .addComponent(detailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addAsDoctortBtn)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(40, 40, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addComponent(addAsDoctortBtn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addPersonBtn)
-                    .addComponent(updatePersonBtn)
-                    .addComponent(deletePersonBtn)
-                    .addComponent(addAsPatientBtn)
-                    .addComponent(addAsDoctortBtn))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addPersonBtn)
+                            .addComponent(updatePersonBtn)
+                            .addComponent(deletePersonBtn)
+                            .addComponent(addAsPatientBtn)
+                            .addComponent(addAsDoctortBtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(detailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(184, 184, 184))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -419,7 +494,9 @@ public class PersonPanel extends javax.swing.JPanel {
             gender="female";
         }
         Long phone = Long.parseLong(phoneField.getText());
-//        City cityName = cityField.getText();
+        
+        String cityName = cityField.getText();
+        
         int selectedRowIndex = communityTable.getSelectedRow();
         if(selectedRowIndex<0) {
             JOptionPane.showMessageDialog(null, "Please select a community");
@@ -440,6 +517,7 @@ public class PersonPanel extends javax.swing.JPanel {
         p.setAge(age);
         p.setGender(gender);
         p.setPhone(phone);
+        p.setCity(city);
 //        p.setCommunity(selectedC);
         p.setPincode(pincode);
         p.setPassword(pswd);
@@ -452,6 +530,7 @@ public class PersonPanel extends javax.swing.JPanel {
         ageField.setText("");
         maleRadioButton.setText("");
         phoneField.setText("");
+        cityField.setText("");
         password.setText("");
         pincodeField.setText("");
         populatePersonTable();
@@ -473,7 +552,7 @@ public class PersonPanel extends javax.swing.JPanel {
         nameField.setText(selectedPerson.getName());
         ageField.setText(String.valueOf(selectedPerson.getAge()));
         phoneField.setText(String.valueOf(selectedPerson.getPhone()));
-//        houseField.setText(String.valueOf(selectedPerson.getHouse()));
+//        cityField.setText(selectedPerson.getCity());
         pincodeField.setText(String.valueOf(selectedPerson.getPincode()));
         
         
@@ -544,7 +623,8 @@ public class PersonPanel extends javax.swing.JPanel {
 
     private void addAsDoctortBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAsDoctortBtnActionPerformed
         // TODO add your handling code here:
-        if(hospitalField == null){
+        jPanel1.setVisible(true);
+        if(hospitalField.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Please enter hospital name!!", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             String hospital = null;
@@ -557,6 +637,111 @@ public class PersonPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Hospital does not exist");
         }
         
+        
+        }
+        
+        
+        
+    }//GEN-LAST:event_addAsDoctortBtnActionPerformed
+
+    private void hospitalFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalFieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_hospitalFieldActionPerformed
+
+    private void nameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(nameField.getText());
+        if(!same.matches()){
+            error.setText("Only Alphabets allowed.");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    
+    }//GEN-LAST:event_nameFieldKeyReleased
+
+    private void ageFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,2}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(ageField.getText());
+        if(!same.matches()){
+            error.setText("Only Numbers allowed. Max 99");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_ageFieldKeyReleased
+
+    private void phoneFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,10}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(phoneField.getText());
+        if(!same.matches()){
+            error.setText("Only 10 Numbers allowed");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_phoneFieldKeyReleased
+
+    private void cityFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cityFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(cityField.getText());
+        if(!same.matches()){
+            error.setText("Only Alphabets allowed.");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_cityFieldKeyReleased
+
+    private void passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(nameField.getText());
+        if(!same.matches()){
+            error.setText("Min 8 characters, at least 1 letter & 1 number.");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_passwordKeyReleased
+
+    private void pincodeFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pincodeFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,5}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(ageField.getText());
+        if(!same.matches()){
+            error.setText("Only Numbers allowed. Max 5");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_pincodeFieldKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         int selcetedPerson =  personTable.getSelectedRow();
         if (selcetedPerson < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row you want to add as doctor!!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -569,16 +754,7 @@ public class PersonPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Person added as doctor");
             populatePersonTable();
         }
-        }
-        
-        
-        
-    }//GEN-LAST:event_addAsDoctortBtnActionPerformed
-
-    private void hospitalFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalFieldActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_hospitalFieldActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -592,11 +768,13 @@ public class PersonPanel extends javax.swing.JPanel {
     private javax.swing.JTable communityTable;
     private javax.swing.JButton deletePersonBtn;
     private javax.swing.JPanel detailPanel;
+    private javax.swing.JLabel error;
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JLabel gender;
     private javax.swing.JPanel genderPanel;
     private javax.swing.JTextField hospitalField;
     private javax.swing.JLabel house;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

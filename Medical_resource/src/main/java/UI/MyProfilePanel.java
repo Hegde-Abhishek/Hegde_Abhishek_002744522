@@ -48,6 +48,8 @@ public class MyProfilePanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         phoneF2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        personIdF = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("My Profile");
@@ -76,6 +78,9 @@ public class MyProfilePanel extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("Update");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Person Id :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +108,11 @@ public class MyProfilePanel extends javax.swing.JPanel {
                                     .addComponent(phoneF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ageF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(phoneF1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phoneF2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(phoneF2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(37, 37, 37)
+                                .addComponent(personIdF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(324, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -136,7 +145,11 @@ public class MyProfilePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(personIdF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(83, 83, 83))
         );
@@ -158,14 +171,20 @@ public class MyProfilePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField nameF;
+    private javax.swing.JTextField personIdF;
     private javax.swing.JTextField phoneF;
     private javax.swing.JTextField phoneF1;
     private javax.swing.JTextField phoneF2;
     // End of variables declaration//GEN-END:variables
 
     private void populateFields() {
-                nameF.setText(personDir.find(loginId).getName());
-
+        nameF.setText(personDir.find(loginId).getName());
+        ageF.setText(String.valueOf(personDir.find(loginId).getAge()));
+        phoneF.setText(String.valueOf(personDir.find(loginId).getPhone()));
+        phoneF1.setText(personDir.find(loginId).getGender());
+        phoneF2.setText(String.valueOf(personDir.find(loginId).getPincode()));
+        personIdF.setText(String.valueOf(personDir.find(loginId).getPersonId()));
     }
 }

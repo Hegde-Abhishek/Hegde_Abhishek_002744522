@@ -46,6 +46,8 @@ public class MyEncountersPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         vitalSignsTable = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 255, 204));
+
         encHisTable.setBackground(new java.awt.Color(204, 255, 204));
         encHisTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,7 +62,7 @@ public class MyEncountersPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(encHisTable);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Encounter History");
 
         jButton1.setText("View Vital Signs");
@@ -70,6 +72,7 @@ public class MyEncountersPanel extends javax.swing.JPanel {
             }
         });
 
+        vitalSignsTable.setBackground(new java.awt.Color(204, 255, 204));
         vitalSignsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -87,29 +90,27 @@ public class MyEncountersPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(jLabel1)
-                .addContainerGap(287, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2))
+            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(567, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(266, 266, 266)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );

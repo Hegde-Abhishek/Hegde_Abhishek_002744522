@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 import Model.PatientDirectory;
 import Model.PersonDirectory;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -78,6 +80,9 @@ public class PatientDirc extends javax.swing.JPanel {
         phone = new javax.swing.JLabel();
         phone1 = new javax.swing.JLabel();
         pincodeField = new javax.swing.JTextField();
+        error = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(204, 204, 255));
 
         heading.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         heading.setText("Patient Directory");
@@ -95,6 +100,8 @@ public class PatientDirc extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(patientDirTable);
 
+        addEncBtn.setBackground(new java.awt.Color(255, 255, 102));
+        addEncBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         addEncBtn.setText("Add an encounter");
         addEncBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +126,7 @@ public class PatientDirc extends javax.swing.JPanel {
 
         jLabel3.setText("Select a doctor");
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +185,8 @@ public class PatientDirc extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        updateDoctorBtn.setBackground(new java.awt.Color(255, 255, 102));
+        updateDoctorBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         updateDoctorBtn.setText("Update a patient");
         updateDoctorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +194,8 @@ public class PatientDirc extends javax.swing.JPanel {
             }
         });
 
+        addDoctorBtn.setBackground(new java.awt.Color(255, 255, 102));
+        addDoctorBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         addDoctorBtn.setText("Add a patient");
         addDoctorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +203,8 @@ public class PatientDirc extends javax.swing.JPanel {
             }
         });
 
+        delBtn.setBackground(new java.awt.Color(255, 255, 102));
+        delBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         delBtn.setText("Delete a doctor");
         delBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +212,8 @@ public class PatientDirc extends javax.swing.JPanel {
             }
         });
 
+        updateBtn.setBackground(new java.awt.Color(255, 255, 102));
+        updateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +221,8 @@ public class PatientDirc extends javax.swing.JPanel {
             }
         });
 
+        saveBtn.setBackground(new java.awt.Color(255, 255, 102));
+        saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +232,12 @@ public class PatientDirc extends javax.swing.JPanel {
 
         name.setText("Name :");
 
+        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameFieldKeyReleased(evt);
+            }
+        });
+
         age.setText("Age :");
 
         ageField.addActionListener(new java.awt.event.ActionListener() {
@@ -221,10 +245,27 @@ public class PatientDirc extends javax.swing.JPanel {
                 ageFieldActionPerformed(evt);
             }
         });
+        ageField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ageFieldKeyReleased(evt);
+            }
+        });
+
+        phoneField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                phoneFieldKeyReleased(evt);
+            }
+        });
 
         phone.setText("Phone :");
 
         phone1.setText("Pincode :");
+
+        pincodeField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pincodeFieldKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout detPanelLayout = new javax.swing.GroupLayout(detPanel);
         detPanel.setLayout(detPanelLayout);
@@ -239,7 +280,8 @@ public class PatientDirc extends javax.swing.JPanel {
                             .addComponent(age)
                             .addComponent(phone)
                             .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phone1))
+                            .addComponent(phone1)
+                            .addComponent(error))
                         .addGap(36, 36, 36)
                         .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,7 +310,9 @@ public class PatientDirc extends javax.swing.JPanel {
                 .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phone1)
                     .addComponent(pincodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(error)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(saveBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(updateBtn)
@@ -321,7 +365,7 @@ public class PatientDirc extends javax.swing.JPanel {
                         .addGap(37, 37, 37))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(detPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addContainerGap(33, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -444,6 +488,66 @@ public class PatientDirc extends javax.swing.JPanel {
         populatePatientTable();
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    private void nameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(nameField.getText());
+        if(!same.matches()){
+            error.setText("Only Alphabets allowed.");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_nameFieldKeyReleased
+
+    private void ageFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,2}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(ageField.getText());
+        if(!same.matches()){
+            error.setText("Only Numbers allowed. Max 99");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_ageFieldKeyReleased
+
+    private void phoneFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,10}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(phoneField.getText());
+        if(!same.matches()){
+            error.setText("Only Numbers allowed. Max 99");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_phoneFieldKeyReleased
+
+    private void pincodeFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pincodeFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,5}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(pincodeField.getText());
+        if(!same.matches()){
+            error.setText("Only Numbers allowed. Max 99");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_pincodeFieldKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDoctorBtn;
@@ -454,6 +558,7 @@ public class PatientDirc extends javax.swing.JPanel {
     private javax.swing.JButton delBtn;
     private javax.swing.JPanel detPanel;
     private javax.swing.JTable docTable;
+    private javax.swing.JLabel error;
     private javax.swing.JLabel heading;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;

@@ -7,6 +7,8 @@ package UI;
 import Model.Hospital;
 import Model.HospitalDirectory;
 import Model.Person;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,20 +58,36 @@ public class HospitalPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         updateSaveBtn = new javax.swing.JButton();
+        error1 = new javax.swing.JLabel();
         updateBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
+        error = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
         jLabel1.setText("Create Hospital");
 
         jLabel2.setText("Name : ");
 
+        nameF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameFKeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("City :");
 
         jLabel4.setText("Community :");
 
         jLabel5.setText("Pincode :");
+
+        pincodeF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pincodeFKeyReleased(evt);
+            }
+        });
 
         hospitalTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,10 +106,24 @@ public class HospitalPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Pincode :");
 
+        pincodeField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pincodeFieldKeyReleased(evt);
+            }
+        });
+
         jLabel7.setText("Name : ");
+
+        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameFieldKeyReleased(evt);
+            }
+        });
 
         jLabel8.setText("City :");
 
+        updateSaveBtn.setBackground(new java.awt.Color(204, 255, 255));
+        updateSaveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         updateSaveBtn.setText("Save");
         updateSaveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +137,10 @@ public class HospitalPanel extends javax.swing.JPanel {
             detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detPanelLayout.createSequentialGroup()
                 .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(updateSaveBtn)
+                    .addGroup(detPanelLayout.createSequentialGroup()
+                        .addComponent(error1)
+                        .addGap(153, 153, 153)
+                        .addComponent(updateSaveBtn))
                     .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(detPanelLayout.createSequentialGroup()
                             .addComponent(jLabel6)
@@ -141,9 +176,13 @@ public class HospitalPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(pincodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(updateSaveBtn))
+                .addGroup(detPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateSaveBtn)
+                    .addComponent(error1)))
         );
 
+        updateBtn.setBackground(new java.awt.Color(204, 255, 255));
+        updateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +190,8 @@ public class HospitalPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(204, 255, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("Delete");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +199,8 @@ public class HospitalPanel extends javax.swing.JPanel {
             }
         });
 
+        saveBtn.setBackground(new java.awt.Color(204, 255, 255));
+        saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,10 +214,6 @@ public class HospitalPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(244, 244, 244)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(detPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 112, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -184,26 +223,34 @@ public class HospitalPanel extends javax.swing.JPanel {
                 .addComponent(jButton2)
                 .addGap(135, 135, 135))
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(pincodeF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(78, 78, 78)
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(nameF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(114, 114, 114)
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(error)
+                                .addGap(180, 180, 180)
+                                .addComponent(saveBtn))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(pincodeF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(78, 78, 78)
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(nameF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(114, 114, 114)
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -224,7 +271,9 @@ public class HospitalPanel extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(pincodeF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
-                .addComponent(saveBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn)
+                    .addComponent(error))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -300,9 +349,71 @@ public class HospitalPanel extends javax.swing.JPanel {
         populateHospitalTable();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void nameFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(nameF.getText());
+        if(!same.matches()){
+            error.setText("Only Alphabets allowed.");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_nameFKeyReleased
+
+    private void pincodeFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pincodeFKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,5}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(pincodeF.getText());
+        if(!same.matches()){
+            error.setText("Only 5 Numbers allowed");
+            saveBtn.setEnabled(false);
+        }
+        else{
+            error.setText("");
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_pincodeFKeyReleased
+
+    private void pincodeFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pincodeFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[0-9]{1,5}$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(pincodeField.getText());
+        if(!same.matches()){
+            error1.setText("Only 5 Numbers allowed");
+            updateSaveBtn.setEnabled(false);
+        }
+        else{
+            error1.setText("");
+            updateSaveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_pincodeFieldKeyReleased
+
+    private void nameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyReleased
+        // TODO add your handling code here:
+        String Allowed="^[A-Z a-z]+$";
+        Pattern patt = Pattern.compile(Allowed);
+        Matcher same = patt.matcher(pincodeF.getText());
+        if(!same.matches()){
+            error1.setText("Only 5 Numbers allowed");
+            updateSaveBtn.setEnabled(false);
+        }
+        else{
+            error1.setText("");
+            updateSaveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_nameFieldKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel detPanel;
+    private javax.swing.JLabel error;
+    private javax.swing.JLabel error1;
     private javax.swing.JTable hospitalTable;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
