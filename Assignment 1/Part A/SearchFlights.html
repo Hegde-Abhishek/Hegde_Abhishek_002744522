@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="images/icon.png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BostonAirways</title>
+</head>
+<body>  
+  <div class="container">
+    <header>Boston Airways</header>
+    <nav>
+      <a href="home.html">Home</a>
+      <a class="search" href="#">Search Flight</a>
+    </nav>
+    <h3>Book your flight seamlessly</h3>
+    <br />
+    <form>
+      <div>
+        <label for="from">From:</label> <br/>
+        <select name="from">
+          <option>Select City</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="boston">Boston</option>
+          <option value="las vegas">Las Vegas</option>
+          <option value="london">London</option>
+        </select>
+      </div>
+      <div>
+        <label for="to">To:</label> <br/>
+        <select name="to">
+          <option>Select City</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="boston">Boston</option>
+          <option value="las vegas">Las Vegas</option>
+          <option value="london">London</option>
+        </select>
+      </div>
+      <label for="depart">Depart Date</label> <br/>
+      <input type="date" id="depart"> <br/>
+      <label for="return">Return Date</label> <br/>
+      <input type="date" id="return">
+      <div>
+        <label for="travellers">Cabin Class & Travellers</label> <br/>
+        <select name="travellers">
+          <option value="Bangalore">1 Adult, Economy</option>
+          <option value="boston">2 Adult, Economy</option>
+          <option value="las vegas">1 Adult, Business</option>
+          <option value="london">2 Adult, Business</option>
+        </select> <br/>
+      </div>
+      <button type="submit">Search</button>
+    </form>
+    <footer>
+      &copy; <em id="date"></em>BostonAirways 2023
+    </footer>
+  </div>
+</body>
+</html>

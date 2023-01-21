@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="/images/icon.png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="home.css">
+  <title>Boston Airways</title>
+</head>
+<body>
+      <header>
+        <h1>Boston Airways</h1>             
+        <nav>
+          <ul class="nav_links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>          
+        </nav>
+      </header>
+
+    <div class="container">
+
+      <section>  
+        <h2 class="trial">Let the journey begin</h2>  
+        <h3>Search for your flight.......</h3>   
+        <div class="booking_container">  
+          <div class="form">
+            <form>            
+              <div class="input-details">
+                <div class="travel-details">
+                  <span class="details">From:</span>
+                  <select name="from">
+                    <option>Select City</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="boston">Boston</option>
+                    <option value="las vegas">Las Vegas</option>
+                    <option value="london">London</option>
+                  </select>
+                </div>
+                
+                <div class="travel-details">
+                  <span class="details">To:</span>
+                  <select name="to">
+                    <option>Select City</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="boston">Boston</option>
+                    <option value="las vegas">Las Vegas</option>
+                    <option value="london">London</option>
+                  </select>
+                </div>
+                
+                <div class="travel-details">
+                  <span class="details">Depart Date:</span>
+                  <input type="date" id="depart"> 
+                </div>
+                
+                <div class="travel-details">
+                  <span class="details">Return Date:</span>
+                  <input type="date" id="return">
+                </div>
+                
+              </div>
+              <div class="button-container">
+                <button class="search-flight" type="submit">Search</button>
+              </div>                          
+            </form> 
+          </div>                              
+        </div>                 
+      </section>
+
+      <div class="wrapper">
+        <div class="divider div-transparent">        
+        </div>
+      </div>
+
+      <!-- Section 2 Block -->
+      <section class="images_section">
+        <h2>Mesmerizing Views</h2>   
+        <h3>Most visited destinations</h3>
+        <div class="image_container">
+          <div class="card">
+            <div class="card-image1"></div>
+            <div class="card-text">
+              <span class="date">Bangalore City</span>
+              <p class="city_info">Bangalore is referred to as the “Silicon Valley of India” because of its role as the nation's leading IT exporter. The city is also known for its parks and nightlife.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-image2"></div>
+            <div class="card-text">
+              <span class="date">London City</span>
+              <p class="city_info">London is the capital and largest city of England and the United Kingdom. It stands on the River Thames in south-east England.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-image3"></div>
+            <div class="card-text">
+              <span class="date">Las Vegas</span>
+              <p class="city_info">Las Vegas, often known simply as Vegas, is the 26th-most populous city in the United States, the most populous city in the state of Nevada, and the county seat of Clark County.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrapper">
+        <div class="divider div-transparent">        
+        </div>
+      </div>
+
+      <!-- Section 3 Block -->
+      <section class="videos_section">
+        <h2>Plan your perfect trip</h2>
+        <h3>View some of the amazing destinations</h3>
+        <div class="video_container">          
+          <div class="video">
+            <video controls>
+              <source src="images/las_vegas.mp4" type="video/mp4">            
+            </video>
+            <p>Las Vegas City</p>
+          </div>
+          <div class="video">
+            <video controls>
+              <source src="images/new_york.mp4" type="video/mp4">
+            </video>
+            <p>New York City</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer Block  -->
+    <footer>
+      <h6>Plan your travel with Boston Airways. Compare cheap flights, hotels and car rental now.</h6>
+      <h6>BostonAirways © 2023</h6>
+    </footer>
+</body>
+</html>
