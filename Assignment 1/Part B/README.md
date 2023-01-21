@@ -13,4 +13,4 @@ Email : hegde.ab@northeastern.edu
 -> Card animations, hover animations, Gradiant coloring are added using CSS and for better UI experience.
 
 Setup : 
-Open home.html file in vs code and run the code using live server.
+Open home.html file in VS code and run the code using live server.

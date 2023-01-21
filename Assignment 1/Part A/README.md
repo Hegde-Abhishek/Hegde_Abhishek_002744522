@@ -18,4 +18,4 @@ Email : hegde.ab@northeastern.edu
     ~ hyperlink(a tag) - used in nav bar to switch between two pages
 
 Setup : 
-Open home.html file in vs code and run the code using live server.
+Open home.html file in VS code and run the code using live server.
